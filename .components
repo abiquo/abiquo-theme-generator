@@ -1,0 +1,7 @@
+--- 
+:stylesheet: less
+:script: none
+:renderer: liquid
+:orm: none
+:mock: none
+:test: none
