@@ -14,3 +14,6 @@ bundle install
 
 thin start -d
 
+Web access
+==========
+http://IP:3000/
