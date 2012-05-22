@@ -12,5 +12,5 @@ cd abiquo-theme-generator
 
 bundle install
 
-padrino start
+thin start -d
 
