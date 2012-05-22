@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Salvador Girones
+
+
 # Helper methods defined here can be accessed in any controller or view in the application
 
 AbiquoBranding.helpers do

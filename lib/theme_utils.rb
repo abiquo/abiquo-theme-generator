@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Author: Salvador Girones
+
 module ThemeUtils
 
 	BASE_THEME_COLORS = {
@@ -164,6 +166,7 @@ module ThemeUtils
 		path = "/tmp/#{name}_base_theme/"
 		
 		raise Exception.new 'Already exists a base theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_base_theme.tar.gz"
+		%x(rm -rf #{path})
 		%x(cp -R #{BASE_THEME_EXAMPLE_PATH} #{path})
 
 		return Theme.new :base, "#{name}_base_theme", path
@@ -173,6 +176,7 @@ module ThemeUtils
 		path = "/tmp/#{name}_theme/"
 
 		raise Exception.new 'Already exists a theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_theme.tar.gz"
+		%x(rm -rf #{path})
 		%x(cp -R #{ENT_THEME_EXAMPLE_PATH} #{path})
 
 		return Theme.new :enterprise, "#{name}_theme", path

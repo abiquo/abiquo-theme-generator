@@ -14,6 +14,7 @@ gem 'less'
 gem 'liquify'
 gem 'liquid', "= 2.1.2"
 gem 'therubyracer'
+gem 'thin'
 
 # Test requirements
 
