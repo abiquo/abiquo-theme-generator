@@ -17,9 +17,9 @@
 module ThemeUtils
 
 	BASE_THEME_COLORS = {
-		#'color_loader' => {'name' => 'Loader Color', 'color' => 'FFD200', 'file' => 'color_loader.txt'},
+		'color_loader' => {'name' => 'Loader ProgressBar color', 'color' => 'FFD200', 'file' => 'color_loader.txt'},
 		#'aplication_theme_color' => {'name' => 'Application Theme Color', 'group' => 'Application', 'element' => 'theme-color', 'color' => '000000', 'file' => 'arialComplete.css'},
-		'text_input_color' => {'name' => 'Text Input Color', 'group' => 'TextInput', 'element' => 'color', 'color' => '505050', 'file' => 'base.css'}
+		#'text_input_color' => {'name' => 'Text Input Color', 'group' => 'TextInput', 'element' => 'color', 'color' => '505050', 'file' => 'base.css'}
 	}
 
 	BASE_THEME_CSS = {
@@ -28,18 +28,28 @@ module ThemeUtils
 	}
 
 	BASE_THEME_IMAGES = {
-		'custom_preloader_logo' => {'name' => 'Custom Preloader Logo', 'file' => 'CustomPreloaderLogo.png'},
-		'virtual_image_default_icon' => {'name' => 'VirtualImage default icon', 'file' => 'VirtualImage_defaultIcon.jpg'},
-		'login_logo' => {'name' => 'Login logo', 'file' => 'assets/application/login/logo.png'}
+		'custom_preloader_logo' => {'name' => 'Preloader Logo', 'file' => 'CustomPreloaderLogo.png'},
+		'login_logo' => {'name' => 'Login logo', 'file' => 'assets/application/login/logo.png'},
+		'login_background' => {'name' => 'Login Background', 'file' => 'assets/application/login_background_image.jpg'},
+		'button_image_up' => {'name' => 'Button Up skin', 'file' => 'assets/flexcomponents/button/up_skin.png'},
+		'button_image_over' => {'name' => 'Button Over skin', 'file' => 'assets/flexcomponents/button/over_skin.png'},
+		'button_image_down' => {'name' => 'Button Down skin', 'file' => 'assets/flexcomponents/button/down_skin.png'},
+		'button_image_disabled' => {'name' => 'Button Disabled skin', 'file' => 'assets/flexcomponents/button/disabled_skin.png'}
 	}
 
 	ENTERPRISE_COLORS = {
-		'footer_text' => {'name' => 'Footer Text', 'group' => 'footerText', 'element' => 'color', 'color' => 'CCCCCC', 'file' => 'main.css'}
+		#'footer_text' => {'name' => 'Footer Text', 'group' => 'footerText', 'element' => 'color', 'color' => 'CCCCCC', 'file' => 'main.css'}
 	}
 
 	ENTERPRISE_IMAGES = {
-		# 'id'=> { name => 'name', file => 'file'} File path must be from assets/
-		'application_postlogin_background_image' => {'name' => 'Post Login Background Image', 'file' => 'assets/application/postlogin_background_image.png'}
+		#'application_postlogin_background_image' => {'name' => 'Post Login Background Image', 'file' => 'assets/application/postlogin_background_image.png'},
+		'button_image_up' => {'name' => 'Button Up skin', 'file' => 'assets/flexcomponents/button/up_skin.png'},
+		'button_image_over' => {'name' => 'Button Over skin', 'file' => 'assets/flexcomponents/button/over_skin.png'},
+		'button_image_down' => {'name' => 'Button Down skin', 'file' => 'assets/flexcomponents/button/down_skin.png'},
+		'button_image_disabled' => {'name' => 'Button Disabled skin', 'file' => 'assets/flexcomponents/button/disabled_skin.png'},
+		'generalpanel_header' => {'name' => 'Header skin', 'file' => 'assets/application/skins/generalpanel_header_skin.png'},
+		'generalpanel_bottom' => {'name' => 'Bottom skin', 'file' => 'assets/application/skins/generalpanel_bottom_skin.png'}
+		#'dashboard_logo' => {'name' => 'Dashboard Logo', 'file' => 'logo.png'}
 	}
 	ENTERPRISE_CSS = {
 		# 'id'=> { name => 'name', file => 'file'}
@@ -91,15 +101,24 @@ module ThemeUtils
 		def replace_colors colors
 			if @type == :base
 				colors.each do |id, color|
-					File.open(@path + BASE_THEME_COLORS[id]['file'], 'r+')  do |f|
-						lines = f.readlines
-						group_init = lines.index{|x| x.include? BASE_THEME_COLORS[id]['group']}
-						return unless group_init
-						group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-						color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  BASE_THEME_COLORS[id]['element']}
-						lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
-						f.pos = 0
-						f.write lines
+					case id
+						when "color_loader" then
+							File.open(@path + BASE_THEME_COLORS[id]['file'], 'r+')  do |f|
+								line = f.readlines[0].gsub(/[A-Fa-f0-9]{6}/, color)
+								f.pos = 0
+								f.write line
+							end
+						else
+							File.open(@path + BASE_THEME_COLORS[id]['file'], 'r+')  do |f|
+								lines = f.readlines
+								group_init = lines.index{|x| x.include? BASE_THEME_COLORS[id]['group']}
+								return unless group_init
+								group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
+								color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  BASE_THEME_COLORS[id]['element']}
+								lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
+								f.pos = 0
+								f.write lines
+							end
 					end
 					@custom_colors[id] = BASE_THEME_COLORS[id]
 				end

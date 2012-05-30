@@ -70,21 +70,23 @@
               <input type="text" class="input-xlarge" id="input01" name="theme_name">
             </div>
           </div>
+          {% if colors.size > 0 %}
           <div class="control-group">
             <h2>Custom Colors</h2>
           </div>
           <hr />
-          {% for color in colors %}
-            <div class="control-group">
-              <label class="control-label" for="colorPicker">{{color.name}}</label>
-              <div class="controls">
-                <div class="input-append color" data-color="#{{color.color}}" data-color-format="hez" id="{{color.id}}">
-                  <input type="text" class="span2" value="#{{color.color}}" name="{{color.id}}" >
-                  <span class="add-on"><i style="background-color: #{{color.color}}"></i></span>
+            {% for color in colors %}
+              <div class="control-group">
+                <label class="control-label" for="colorPicker">{{color.name}}</label>
+                <div class="controls">
+                  <div class="input-append color" data-color="#{{color.color}}" data-color-format="hez" id="{{color.id}}">
+                    <input type="text" class="span2" value="#{{color.color}}" name="{{color.id}}" >
+                    <span class="add-on"><i style="background-color: #{{color.color}}"></i></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          {% endif %}
           
           <div class="control-group">
             <h2>Custom Image files</h2>
@@ -111,21 +113,23 @@
               <input type="text" class="input-xlarge" id="input01" name="theme_name">
             </div>
           </div>
-          <div class="control-group">
-            <h2>Custom Colors</h2>
-          </div>
-          <hr />
-          {% for color in colors %}
+          {% if colors.size > 0 %}
             <div class="control-group">
-              <label class="control-label" for="colorPicker">{{color.name}}</label>
-              <div class="controls">
-                <div class="input-append color" data-color="#{{color.color}}" data-color-format="hez" id="{{color.id}}">
-                  <input type="text" class="span2" value="#{{color.color}}" name="{{color.id}}" >
-                  <span class="add-on"><i style="background-color: #{{color.color}}"></i></span>
+              <h2>Custom Colors</h2>
+            </div>
+            <hr />
+            {% for color in colors %}
+              <div class="control-group">
+                <label class="control-label" for="colorPicker">{{color.name}}</label>
+                <div class="controls">
+                  <div class="input-append color" data-color="#{{color.color}}" data-color-format="hez" id="{{color.id}}">
+                    <input type="text" class="span2" value="#{{color.color}}" name="{{color.id}}" >
+                    <span class="add-on"><i style="background-color: #{{color.color}}"></i></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          {% endif %}
           
           <div class="control-group">
             <h2>Custom Image files</h2>
