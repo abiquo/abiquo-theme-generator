@@ -51,6 +51,105 @@ module ThemeUtils
 		'generalpanel_bottom' => {'name' => 'Bottom skin', 'file' => 'assets/application/skins/generalpanel_bottom_skin.png'}
 		#'dashboard_logo' => {'name' => 'Dashboard Logo', 'file' => 'logo.png'}
 	}
+
+	ENTERPRISE_HEADER_IMAGES = {
+		'configuration' => {
+			'name' => 'Configuration icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/configurationbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/configurationbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/configurationbutton/down_icon.png'}
+			}
+		},
+		'documentation' => {
+			'name' => 'Documentation icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/documentationbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/documentationbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/documentationbutton/down_icon.png'}
+			}
+		},
+		'infrastructure' => {
+			'name' => 'Infrastructure icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/infrastructurebutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/infrastructurebutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/infrastructurebutton/down_icon.png'}
+			}
+		},
+		'logout' => {
+			'name' => 'Logout icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/logoutbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/logoutbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/logoutbutton/down_icon.png'}
+			}
+		},
+		'metering' => {
+			'name' => 'Metering icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/meteringbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/meteringbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/meteringbutton/down_icon.png'}
+			}
+		},
+		'pricing' => {
+			'name' => 'Pricing icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/pricingbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/pricingbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/pricingbutton/down_icon.png'}
+			}
+		},
+		'report' => {
+			'name' => 'Report icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/reportbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/reportbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/reportbutton/down_icon.png'}
+			}
+		},
+		'home' => {
+			'name' => 'Home icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/homebutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/homebutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/homebutton/down_icon.png'}
+			}
+		},
+		'support' => {
+			'name' => 'Support icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/supportbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/supportbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/supportbutton/down_icon.png'}
+			}
+		},
+		'users' => {
+			'name' => 'Users icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/usersbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/usersbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/usersbutton/down_icon.png'}
+			}
+		},
+		'virtualapp' => {
+			'name' => 'Virtualapp icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/virtualappbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualappbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/virtualappbutton/down_icon.png'}
+			}
+		},
+		'virtualimage' => {
+			'name' => 'Virtualimage icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/virtualimagebutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualimagebutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/virtualimagebutton/down_icon.png'}
+			}
+		}
+	}
 	ENTERPRISE_CSS = {
 		# 'id'=> { name => 'name', file => 'file'}
 		'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'},
@@ -81,6 +180,7 @@ module ThemeUtils
 			@type = type
 			@custom_images = {} # 'id'=> { name => 'name', file => 'file'}
 			@custom_colors = {} # 'id'=> { name => 'name', color => '000000'}
+			@custom_header_images = {}
 		end
 
 		def replace_images images
@@ -91,8 +191,20 @@ module ThemeUtils
 				end
 			elsif @type == :enterprise
 				images.each do |id, content|
-					File.open(@path + ENTERPRISE_IMAGES[id]['file'], 'w') { |f| f.puts content } if ENTERPRISE_IMAGES[id]
-					@custom_images[id] = ENTERPRISE_IMAGES[id]
+					id_image = id.split('.')[0]
+					id_file = id.split('.')[1]
+					tmp_image = ENTERPRISE_IMAGES[id_image] ? ENTERPRISE_IMAGES[id_image] : ENTERPRISE_HEADER_IMAGES[id_image]
+					
+					#if the image is not found, continue with the next
+					next if not tmp_image
+
+					if tmp_image["file"]
+						File.open(@path + tmp_image['file'], 'w') { |f| f.puts content }
+						@custom_images[id_image] = tmp_image
+					elsif tmp_image["files"]
+						File.open(@path + tmp_image['files'][id_file]['path'], 'w') { |f| f.puts content } if tmp_image['files'][id_file]
+						@custom_header_images[id_image] = tmp_image
+					end
 				end
 			end
 		end

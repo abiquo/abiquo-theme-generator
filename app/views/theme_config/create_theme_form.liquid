@@ -72,7 +72,7 @@
           </div>
           {% if colors.size > 0 %}
           <div class="control-group">
-            <h2>Custom Colors</h2>
+            <h3>Custom Colors</h3>
           </div>
           <hr />
             {% for color in colors %}
@@ -89,7 +89,7 @@
           {% endif %}
           
           <div class="control-group">
-            <h2>Custom Image files</h2>
+            <h3>Custom Image files</h3>
           </div>
           <hr />
           {% for image in images %}
@@ -100,6 +100,37 @@
             </div>
           </div>
           {% endfor %}
+
+          <hr />
+
+          {% for icon in header_icons %}
+
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <div class="accordion-toggle" data-toggle="collapse" href="#collapse_{{icon.id}}">
+                  <h3>{{icon.name}}</h3>
+                </div>
+              </div>
+              <div id="collapse_{{icon.id}}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <label class="control-label" for="up_icon">{{icon.files.up_icon.name}}</label>
+                  <div class="controls">
+                    <input class="input-file" id="up_icon" type="file" name='{{icon.id}}.up_icon'>
+                  </div>
+                  <label class="control-label" for="over_icon">{{icon.files.over_icon.name}}</label>
+                  <div class="controls">
+                    <input class="input-file" id="over_icon" type="file" name='{{icon.id}}.over_icon'>
+                  </div>
+                  <label class="control-label" for="down_icon">{{icon.files.down_icon.name}}</label>
+                  <div class="controls">
+                    <input class="input-file" id="down_icon" type="file" name='{{icon.id}}.down_icon'>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+
         {% endif %}
 
         {% if base %}
@@ -115,7 +146,7 @@
           </div>
           {% if colors.size > 0 %}
             <div class="control-group">
-              <h2>Custom Colors</h2>
+              <h3>Custom Colors</h3>
             </div>
             <hr />
             {% for color in colors %}
@@ -132,7 +163,7 @@
           {% endif %}
           
           <div class="control-group">
-            <h2>Custom Image files</h2>
+            <h3>Custom Image files</h3>
           </div>
           <hr />
           {% for image in images %}
@@ -165,6 +196,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap-colorpicker.js"></script>
+    <script src="/js/bootstrap-transition.js"></script>
+    <script src="/js/bootstrap-collapse.js"></script>
     <script src="/js/google-code-prettify/prettify.js"></script>
     <script src="/js/validate.min.js"></script>
     <script>

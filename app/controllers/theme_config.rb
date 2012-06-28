@@ -38,9 +38,15 @@ AbiquoBranding.controllers :theme_config do
         all_info.store 'id', id
         colors.push all_info
       end
+      
+      header_icons = []
+      ThemeUtils::ENTERPRISE_HEADER_IMAGES.sort.each do |id, info|
+        all_info = info
+        all_info.store 'id', id
+        header_icons.push all_info
+      end
 
-      render 'theme_config/create_theme_form.liquid', :locals => {:enterprise => true, :colors => colors, :images => images}
-      #render 'theme_config/create_theme_form.liquid', :locals => {:enterprise => true, :css_files => css_files, :images => images}
+      render 'theme_config/create_theme_form.liquid', :locals => {:enterprise => true, :colors => colors, :images => images, :header_icons => header_icons}
 
     elsif params['type'] == 'base'
       
@@ -75,7 +81,10 @@ AbiquoBranding.controllers :theme_config do
     #Only save images from the list
     custom_images = {}
     params.each do |id, content|
-      custom_images[id] = content[:tempfile].read if (ThemeUtils::ENTERPRISE_IMAGES[id] or ThemeUtils::BASE_THEME_IMAGES[id])
+      id_image = id.split('.')[0]
+      custom_images[id] = content[:tempfile].read if (ThemeUtils::ENTERPRISE_IMAGES[id_image] or
+                                                      ThemeUtils::BASE_THEME_IMAGES[id_image] or 
+                                                      ThemeUtils::ENTERPRISE_HEADER_IMAGES[id_image])
     end
 
     #Only save colors from the list
