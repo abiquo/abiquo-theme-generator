@@ -24,13 +24,13 @@ class AbiquoBranding < Padrino::Application
   enable :sessions
 
   get :index, :map => "/" do
-    themes = []
+    @themes = []
     Dir.foreach("#{Padrino.root}/public/downloads/") do |theme|
       if theme.include? "theme"
-        themes.push({"name" => theme, "date" => File.new("#{Padrino.root}/public/downloads/#{theme}").mtime.strftime("%H:%M %m/%d/%Y") })
+        @themes.push({"name" => theme, "date" => File.new("#{Padrino.root}/public/downloads/#{theme}").mtime.strftime("%H:%M %m/%d/%Y") })
       end
     end
-    render 'index.liquid', :locals => {:themes => themes}
+    render 'index.erb'
   end
   ##
   # Caching support

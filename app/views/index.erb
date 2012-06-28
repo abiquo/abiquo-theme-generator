@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <!-- Le styles -->
+     <!-- Le styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
@@ -43,21 +43,38 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">Abiquo Branding</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/">Home</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container">
 
-      <h1>Generated theme</h1>
-      <a href="/downloads/{{file_name}}" class="btn btn-primary btn-large">Download theme</a>
+      <h1>Create a new theme for your Abiquo installation</h1>
+      <p>Use this webapp to create new themes for Abiquo. You can change logos, images and colors.</p>
+      <h3>Existing themes</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Theme</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+        <% for theme in @themes %>
+          <tr>
+            <td><%= theme["name"] %></td>
+            <td><%= theme["date"] %></td>
 
-    </div>
+            <td>
+              <form name="delete_theme" class="form-horizontal" action="/delete_theme" method="POST">
+                <input type='hidden' name='file' value='<%= theme["name"] %>'>
+                <a href="/downloads/<%= theme["name"] %>" class="btn btn-small">Download</a>
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <a href="/create_theme?type=base" class="btn btn-primary btn-large">Create new base theme</a>
+      <a href="/create_theme?type=enterprise" class="btn btn-primary btn-large">Create new enterprise theme</a>
 
     </div> <!-- /container -->
 
@@ -72,5 +89,6 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap-colorpicker.js"></script>
     <script src="/js/google-code-prettify/prettify.js"></script>
+
   </body>
 </html>

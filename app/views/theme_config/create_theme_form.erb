@@ -46,20 +46,14 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">Abiquo Branding</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/">Home</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container">
-
       <form name="theme_form" class="form-horizontal" style="margin-top: 20px" action="/create_theme" method="POST" enctype='multipart/form-data'>
         <fieldset>
-        {% if enterprise %}
+        <% if @enterprise %>
           <input type='hidden' name='type' value='enterprise'>
           <div class="control-group">
             <h1>Configure your new enterprise theme</h1>
@@ -70,70 +64,75 @@
               <input type="text" class="input-xlarge" id="input01" name="theme_name">
             </div>
           </div>
-          {% if colors.size > 0 %}
+          <% if @colors.size > 0 %>
           <div class="control-group">
             <h3>Custom Colors</h3>
           </div>
           <hr />
-            {% for color in colors %}
+            <% @colors.each do |id, color| %>
               <div class="control-group">
-                <label class="control-label" for="colorPicker">{{color.name}}</label>
+                <label class="control-label" for="colorPicker"><%= color['name'] %></label>
                 <div class="controls">
-                  <div class="input-append color" data-color="#{{color.color}}" data-color-format="hez" id="{{color.id}}">
-                    <input type="text" class="span2" value="#{{color.color}}" name="{{color.id}}" >
-                    <span class="add-on"><i style="background-color: #{{color.color}}"></i></span>
+                  <div class="input-append color" data-color="#<%= color['color'] %>" data-color-format="hez" id="<%= id %>">
+                    <input type="text" class="span2" value="#<%= color['color'] %>" name="<%= id %>" >
+                    <span class="add-on"><i style="background-color: #<%= color['color'] %>"></i></span>
                   </div>
                 </div>
               </div>
-            {% endfor %}
-          {% endif %}
+            <% end %>
+          <% end %>
           
           <div class="control-group">
-            <h3>Custom Image files</h3>
+            <h2>Custom Image files</h2>
           </div>
-          <hr />
-          {% for image in images %}
-          <div class="control-group">
-            <label class="control-label" for="fileInput">{{image.name}}</label>
-            <div class="controls">
-              <input class="input-file" id="fileInput" type="file" name='{{image.id}}'>
-            </div>
-          </div>
-          {% endfor %}
 
-          <hr />
-
-          {% for icon in header_icons %}
-
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <div class="accordion-toggle" data-toggle="collapse" href="#collapse_{{icon.id}}">
-                  <h3>{{icon.name}}</h3>
+          <% @images.each do |id, image| %>
+            <% if image['file'] %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div class="accordion-toggle" data-toggle="collapse" href="#collapse_<%= id %>">
+                    <h3><%= image['name'] %></h3>
+                  </div>
                 </div>
-              </div>
-              <div id="collapse_{{icon.id}}" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <label class="control-label" for="up_icon">{{icon.files.up_icon.name}}</label>
-                  <div class="controls">
-                    <input class="input-file" id="up_icon" type="file" name='{{icon.id}}.up_icon'>
-                  </div>
-                  <label class="control-label" for="over_icon">{{icon.files.over_icon.name}}</label>
-                  <div class="controls">
-                    <input class="input-file" id="over_icon" type="file" name='{{icon.id}}.over_icon'>
-                  </div>
-                  <label class="control-label" for="down_icon">{{icon.files.down_icon.name}}</label>
-                  <div class="controls">
-                    <input class="input-file" id="down_icon" type="file" name='{{icon.id}}.down_icon'>
+
+                <div id="collapse_<%= id %>" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <label class="control-label" for="up_icon"><%= image['name'] %></label>
+                    <div class="controls">
+                      <input class="input-file" id="up_icon" type="file" name='<%= id %>'>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          {% endfor %}
+            <% end %>
+
+            <% if image['files'] %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div class="accordion-toggle" data-toggle="collapse" href="#collapse_<%= id %>">
+                    <h3><%= image['name'] %></h3>
+                  </div>
+                </div>
+
+                <div id="collapse_<%= id %>" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <% image['files'].each do |id_file, file| %>
+                      <label class="control-label" for="up_icon"><%= file['name'] %></label>
+                      <div class="controls">
+                        <input class="input-file" id="up_icon" type="file" name='<%= id %>.<%= id_file %>'>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+          <% end %>
 
 
-        {% endif %}
+        <% end %>
 
-        {% if base %}
+        <% if @base %>
           <input type='hidden' name='type' value='base'>
           <div class="control-group">
             <h1>Configure your new base theme</h1>
@@ -144,38 +143,71 @@
               <input type="text" class="input-xlarge" id="input01" name="theme_name">
             </div>
           </div>
-          {% if colors.size > 0 %}
-            <div class="control-group">
-              <h3>Custom Colors</h3>
-            </div>
-            <hr />
-            {% for color in colors %}
+          <% if @colors.size > 0 %>
+          <div class="control-group">
+            <h3>Custom Colors</h3>
+          </div>
+          <hr />
+            <% @colors.each do |id, color| %>
               <div class="control-group">
-                <label class="control-label" for="colorPicker">{{color.name}}</label>
+                <label class="control-label" for="colorPicker"><%= color['name'] %></label>
                 <div class="controls">
-                  <div class="input-append color" data-color="#{{color.color}}" data-color-format="hez" id="{{color.id}}">
-                    <input type="text" class="span2" value="#{{color.color}}" name="{{color.id}}" >
-                    <span class="add-on"><i style="background-color: #{{color.color}}"></i></span>
+                  <div class="input-append color" data-color="#<%= color['color'] %>" data-color-format="hez" id="<%= id %>">
+                    <input type="text" class="span2" value="#<%= color['color'] %>" name="<%= id %>" >
+                    <span class="add-on"><i style="background-color: #<%= color['color'] %>"></i></span>
                   </div>
                 </div>
               </div>
-            {% endfor %}
-          {% endif %}
+            <% end %>
+          <% end %>
           
           <div class="control-group">
             <h3>Custom Image files</h3>
           </div>
-          <hr />
-          {% for image in images %}
-          <div class="control-group">
-            <label class="control-label" for="fileInput">{{image.name}}</label>
-            <div class="controls">
-              <input class="input-file" id="fileInput" type="file" name='{{image.id}}'>
-            </div>
-          </div>
-          {% endfor %}
+          <% @images.each do |id, image| %>
+            <% if image['file'] %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div class="accordion-toggle" data-toggle="collapse" href="#collapse_<%= id %>">
+                    <h3><%= image['name'] %></h3>
+                  </div>
+                </div>
 
-        {% endif %}
+                <div id="collapse_<%= id %>" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <label class="control-label" for="up_icon"><%= image['name'] %></label>
+                    <div class="controls">
+                      <input class="input-file" id="up_icon" type="file" name='<%= id %>'>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if image['files'] %>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div class="accordion-toggle" data-toggle="collapse" href="#collapse_<%= id %>">
+                    <h3><%= image['name'] %></h3>
+                  </div>
+                </div>
+
+                <div id="collapse_<%= id %>" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <% image['files'].each do |id_file, file| %>
+                      <label class="control-label" for="up_icon"><%= file['name'] %></label>
+                      <div class="controls">
+                        <input class="input-file" id="up_icon" type="file" name='<%= id %>.<%= id_file %>'>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+          <% end %>
+
+        <% end %>
           <div class="alert alert-info">
             * Required fields
           </div>
@@ -203,11 +235,11 @@
     <script>
       $(function(){
       window.prettyPrint && prettyPrint()
-        {% for color in colors %}
-          $('#{{color.id}}').colorpicker({
+        <% @colors.each do |id, color| %>
+          $('#<%= id %>').colorpicker({
             format: 'hex'
           });
-        {% endfor %}
+        <% end %>
       });
 
       var validator = new FormValidator(

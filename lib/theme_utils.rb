@@ -17,9 +17,7 @@
 module ThemeUtils
 
 	BASE_THEME_COLORS = {
-		'color_loader' => {'name' => 'Loader ProgressBar color', 'color' => 'FFD200', 'file' => 'color_loader.txt'},
-		#'aplication_theme_color' => {'name' => 'Application Theme Color', 'group' => 'Application', 'element' => 'theme-color', 'color' => '000000', 'file' => 'arialComplete.css'},
-		#'text_input_color' => {'name' => 'Text Input Color', 'group' => 'TextInput', 'element' => 'color', 'color' => '505050', 'file' => 'base.css'}
+		'color_loader' => {'name' => 'Loader ProgressBar color', 'color' => 'FFD200', 'file' => 'color_loader.txt'}
 	}
 
 	BASE_THEME_CSS = {
@@ -31,10 +29,15 @@ module ThemeUtils
 		'custom_preloader_logo' => {'name' => 'Preloader Logo', 'file' => 'CustomPreloaderLogo.png'},
 		'login_logo' => {'name' => 'Login logo', 'file' => 'assets/application/login/logo.png'},
 		'login_background' => {'name' => 'Login Background', 'file' => 'assets/application/login_background_image.jpg'},
-		'button_image_up' => {'name' => 'Button Up skin', 'file' => 'assets/flexcomponents/button/up_skin.png'},
-		'button_image_over' => {'name' => 'Button Over skin', 'file' => 'assets/flexcomponents/button/over_skin.png'},
-		'button_image_down' => {'name' => 'Button Down skin', 'file' => 'assets/flexcomponents/button/down_skin.png'},
-		'button_image_disabled' => {'name' => 'Button Disabled skin', 'file' => 'assets/flexcomponents/button/disabled_skin.png'}
+		'button' => {
+			'name' => 'Button skins',
+			'files' => {
+				'up_skin' => {'name' => 'Default skin', 'path' => 'assets/flexcomponents/button/up_skin.png'},
+				'over_skin' => {'name' => 'Over skin', 'path' => 'assets/flexcomponents/button/over_skin.png'},
+				'down_skin' => {'name' => 'Down skin', 'path' => 'assets/flexcomponents/button/down_skin.png'},
+				'disabled_skin' => {'name' => 'Disabled skin', 'path' => 'assets/flexcomponents/button/disabled_skin.png'}
+			}
+		}
 	}
 
 	ENTERPRISE_COLORS = {
@@ -42,17 +45,22 @@ module ThemeUtils
 	}
 
 	ENTERPRISE_IMAGES = {
-		#'application_postlogin_background_image' => {'name' => 'Post Login Background Image', 'file' => 'assets/application/postlogin_background_image.png'},
-		'button_image_up' => {'name' => 'Button Up skin', 'file' => 'assets/flexcomponents/button/up_skin.png'},
-		'button_image_over' => {'name' => 'Button Over skin', 'file' => 'assets/flexcomponents/button/over_skin.png'},
-		'button_image_down' => {'name' => 'Button Down skin', 'file' => 'assets/flexcomponents/button/down_skin.png'},
-		'button_image_disabled' => {'name' => 'Button Disabled skin', 'file' => 'assets/flexcomponents/button/disabled_skin.png'},
-		'generalpanel_header' => {'name' => 'Header skin', 'file' => 'assets/application/skins/generalpanel_header_skin.png'},
-		'generalpanel_bottom' => {'name' => 'Bottom skin', 'file' => 'assets/application/skins/generalpanel_bottom_skin.png'}
-		#'dashboard_logo' => {'name' => 'Dashboard Logo', 'file' => 'logo.png'}
-	}
-
-	ENTERPRISE_HEADER_IMAGES = {
+		'generalpanel' => {
+			'name' => 'Header and bottom skins',
+			'files' => {
+				'header' => {'name' => 'Header skin', 'file' => 'assets/application/skins/generalpanel_header_skin.png'},
+				'bottom' => {'name' => 'Bottom skin', 'file' => 'assets/application/skins/generalpanel_bottom_skin.png'},		
+			}	
+		},
+		'button' => {
+			'name' => 'Button skins',
+			'files' => {
+				'up_skin' => {'name' => 'Default skin', 'path' => 'assets/flexcomponents/button/up_skin.png'},
+				'over_skin' => {'name' => 'Over skin', 'path' => 'assets/flexcomponents/button/over_skin.png'},
+				'down_skin' => {'name' => 'Down skin', 'path' => 'assets/flexcomponents/button/down_skin.png'},
+				'disabled_skin' => {'name' => 'Disabled skin', 'path' => 'assets/flexcomponents/button/disabled_skin.png'}
+			}
+		},
 		'configuration' => {
 			'name' => 'Configuration icon',
 			'files' => {
@@ -151,7 +159,6 @@ module ThemeUtils
 		}
 	}
 	ENTERPRISE_CSS = {
-		# 'id'=> { name => 'name', file => 'file'}
 		'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'},
 		'application' => {'name' => 'Application', 'file' => 'application.css'},
 		'configuration_components_heart_beat' => {'name' => 'Configuration Components HeartBeat', 'file' => 'ConfigurationComponentsHeartBeat.css'},
@@ -175,25 +182,19 @@ module ThemeUtils
 	class Theme
 		attr_reader :name, :path, :type, :custom_files
 		def initialize type, name, path
+			@type = type
 			@name = name
 			@path = path
-			@type = type
-			@custom_images = {} # 'id'=> { name => 'name', file => 'file'}
-			@custom_colors = {} # 'id'=> { name => 'name', color => '000000'}
-			@custom_header_images = {}
+			@custom_images = {}
+			@custom_colors = {}
 		end
 
 		def replace_images images
 			if @type == :base
 				images.each do |id, content|
-					File.open(@path + BASE_THEME_IMAGES[id]['file'], 'w') { |f| f.puts content } if BASE_THEME_IMAGES[id]
-					@custom_images[id] = BASE_THEME_IMAGES[id]
-				end
-			elsif @type == :enterprise
-				images.each do |id, content|
 					id_image = id.split('.')[0]
 					id_file = id.split('.')[1]
-					tmp_image = ENTERPRISE_IMAGES[id_image] ? ENTERPRISE_IMAGES[id_image] : ENTERPRISE_HEADER_IMAGES[id_image]
+					tmp_image = BASE_THEME_IMAGES[id_image]
 					
 					#if the image is not found, continue with the next
 					next if not tmp_image
@@ -203,12 +204,28 @@ module ThemeUtils
 						@custom_images[id_image] = tmp_image
 					elsif tmp_image["files"]
 						File.open(@path + tmp_image['files'][id_file]['path'], 'w') { |f| f.puts content } if tmp_image['files'][id_file]
-						@custom_header_images[id_image] = tmp_image
+						@custom_images[id_image] = tmp_image
+					end
+				end
+			elsif @type == :enterprise
+				images.each do |id, content|
+					id_image = id.split('.')[0]
+					id_file = id.split('.')[1]
+					tmp_image = ENTERPRISE_IMAGES[id_image]
+					
+					#if the image is not found, continue with the next
+					next if not tmp_image
+
+					if tmp_image["file"]
+						File.open(@path + tmp_image['file'], 'w') { |f| f.puts content }
+						@custom_images[id_image] = tmp_image
+					elsif tmp_image["files"]
+						File.open(@path + tmp_image['files'][id_file]['path'], 'w') { |f| f.puts content } if tmp_image['files'][id_file]
+						@custom_images[id_image] = tmp_image
 					end
 				end
 			end
 		end
-
 
 		def replace_colors colors
 			if @type == :base
@@ -254,7 +271,6 @@ module ThemeUtils
 	end
 
 	def compile theme
-		#TODO
 		if theme.type == :enterprise
 			css_files = ENTERPRISE_CSS
 		else

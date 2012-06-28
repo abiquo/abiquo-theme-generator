@@ -18,53 +18,25 @@ include ThemeUtils
 
 AbiquoBranding.controllers :theme_config do
   get :index, :map => "/theme" do
-    True
+    true
   end
 
   get :create, :map => "/create_theme" do
 
     if params['type'] == 'enterprise'
 
-      images = []
-      ThemeUtils::ENTERPRISE_IMAGES.sort.each do |id, info|
-        all_info = info
-        all_info.store 'id', id
-        images.push all_info
-      end
+      @enterprise = true
+      @images = ThemeUtils::ENTERPRISE_IMAGES.sort
+      @colors = ThemeUtils::ENTERPRISE_COLORS.sort
 
-      colors = []
-      ThemeUtils::ENTERPRISE_COLORS.sort.each do |id, info|
-        all_info = info
-        all_info.store 'id', id
-        colors.push all_info
-      end
-      
-      header_icons = []
-      ThemeUtils::ENTERPRISE_HEADER_IMAGES.sort.each do |id, info|
-        all_info = info
-        all_info.store 'id', id
-        header_icons.push all_info
-      end
-
-      render 'theme_config/create_theme_form.liquid', :locals => {:enterprise => true, :colors => colors, :images => images, :header_icons => header_icons}
+      render 'theme_config/create_theme_form.erb'
 
     elsif params['type'] == 'base'
-      
-      colors = []
-      ThemeUtils::BASE_THEME_COLORS.sort.each do |id, info|
-        all_info = info
-        all_info.store 'id', id
-        colors.push all_info
-      end
+      @base = true
+      @colors = ThemeUtils::BASE_THEME_COLORS.sort
+      @images = ThemeUtils::BASE_THEME_IMAGES.sort
 
-      images = []
-      ThemeUtils::BASE_THEME_IMAGES.sort.each do |id, info|
-        all_info = info
-        all_info.store 'id', id
-        images.push all_info
-      end
-
-      render 'theme_config/create_theme_form.liquid', :locals => {:base => true, :colors => colors, :images => images}
+      render 'theme_config/create_theme_form.erb'
     end
 
   end
@@ -75,16 +47,15 @@ AbiquoBranding.controllers :theme_config do
       theme = ThemeUtils.create_ent_theme params['theme_name'] if params['type'] == 'enterprise'
       theme = ThemeUtils.create_base_theme params['theme_name'] if params['type'] == 'base'
     rescue Exception => e
-      return render 'theme_config/error.liquid', :locals => {:error => e.message}
+      @error = e.message
+      return render 'theme_config/error.erb'
     end
 
     #Only save images from the list
     custom_images = {}
     params.each do |id, content|
       id_image = id.split('.')[0]
-      custom_images[id] = content[:tempfile].read if (ThemeUtils::ENTERPRISE_IMAGES[id_image] or
-                                                      ThemeUtils::BASE_THEME_IMAGES[id_image] or 
-                                                      ThemeUtils::ENTERPRISE_HEADER_IMAGES[id_image])
+      custom_images[id] = content[:tempfile].read if (ThemeUtils::ENTERPRISE_IMAGES[id_image] or ThemeUtils::BASE_THEME_IMAGES[id_image])
     end
 
     #Only save colors from the list
@@ -101,9 +72,23 @@ AbiquoBranding.controllers :theme_config do
 
     #Compile
     ThemeUtils.compile theme
-    file_name = ThemeUtils.pack theme
+    @file_name = ThemeUtils.pack theme
 
-    render 'theme_config/created.liquid', :locals => {:file_name => file_name}
+    render 'theme_config/created.erb'
+  end
+
+  post :delete, :map => "/delete_theme" do
+    begin
+      file = File.basename(File.expand_path(params['file']))
+      path = File.join("#{Padrino.root}/public/downloads/#{file}")
+      
+      File.delete(path)
+    rescue Exception => e
+      @error = e.message
+      return render 'theme_config/error.erb'
+    end
+
+    redirect url(:index)
   end
   
 end

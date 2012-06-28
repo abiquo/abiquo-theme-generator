@@ -12,7 +12,6 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'rack-less'
 gem 'less'
 gem 'liquify'
-gem 'liquid', "= 2.1.2"
 gem 'therubyracer'
 gem 'thin'
 

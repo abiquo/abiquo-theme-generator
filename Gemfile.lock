@@ -83,7 +83,6 @@ PLATFORMS
 
 DEPENDENCIES
   less
-  liquid (= 2.1.2)
   liquify
   padrino (= 0.10.6)
   rack-less
