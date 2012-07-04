@@ -93,8 +93,8 @@ module ThemeUtils
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/logoutbutton/down_icon.png'}
 			}
 		},
-		'metering' => {
-			'name' => 'Metering icon',
+		'events' => {
+			'name' => 'Events icon',
 			'files' => {
 				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/meteringbutton/up_icon.png'},
 				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/meteringbutton/over_icon.png'},
@@ -109,8 +109,8 @@ module ThemeUtils
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/pricingbutton/down_icon.png'}
 			}
 		},
-		'report' => {
-			'name' => 'Report icon',
+		'reports' => {
+			'name' => 'Reports icon',
 			'files' => {
 				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/reportbutton/up_icon.png'},
 				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/reportbutton/over_icon.png'},
@@ -141,16 +141,16 @@ module ThemeUtils
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/usersbutton/down_icon.png'}
 			}
 		},
-		'virtualapp' => {
-			'name' => 'Virtualapp icon',
+		'virtualdatacenters' => {
+			'name' => 'Virtual Datacenters icon',
 			'files' => {
 				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/virtualappbutton/up_icon.png'},
 				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualappbutton/over_icon.png'},
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/virtualappbutton/down_icon.png'}
 			}
 		},
-		'virtualimage' => {
-			'name' => 'Virtualimage icon',
+		'appslibrary' => {
+			'name' => 'Apps library icon',
 			'files' => {
 				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/virtualimagebutton/up_icon.png'},
 				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualimagebutton/over_icon.png'},
