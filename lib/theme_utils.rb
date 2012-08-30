@@ -48,9 +48,9 @@ module ThemeUtils
 		'generalpanel' => {
 			'name' => 'Header and bottom skins',
 			'files' => {
-				'header' => {'name' => 'Header skin', 'file' => 'assets/application/skins/generalpanel_header_skin.png'},
-				'bottom' => {'name' => 'Bottom skin', 'file' => 'assets/application/skins/generalpanel_bottom_skin.png'},		
-			}	
+				'header' => {'name' => 'Header skin', 'path' => 'assets/application/skins/generalpanel_header_skin.png'},
+				'bottom' => {'name' => 'Bottom skin', 'path' => 'assets/application/skins/generalpanel_bottom_skin.png'},		
+			}
 		},
 		'button' => {
 			'name' => 'Button skins',
