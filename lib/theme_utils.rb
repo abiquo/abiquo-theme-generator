@@ -120,9 +120,9 @@ module ThemeUtils
 		'home' => {
 			'name' => 'Home icon',
 			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/homebutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/homebutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/homebutton/down_icon.png'}
+				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/startbutton/up_icon.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/startbutton/over_icon.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/startbutton/down_icon.png'}
 			}
 		},
 		'support' => {
