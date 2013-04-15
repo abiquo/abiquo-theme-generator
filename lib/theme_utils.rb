@@ -156,6 +156,14 @@ module ThemeUtils
 				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualimagebutton/over_icon.png'},
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/virtualimagebutton/down_icon.png'}
 			}
+		},
+		'promoteicon' => {
+			'name' => 'Promote virtualimage icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon','path' => 'assets/virtualimage/promotebutton/buttonPromote.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_over.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_down.png'}
+			}
 		}
 	}
 	ENTERPRISE_CSS = {

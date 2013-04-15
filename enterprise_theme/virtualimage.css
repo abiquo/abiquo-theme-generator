@@ -128,3 +128,9 @@
     source:Embed("/assets/virtualimage/chefEnabled.png");
 
 }
+
+.VirtualImagePromoteButton {
+    up-skin: Embed("/assets/virtualimage/promotebutton/buttonPromote.png");
+    over-skin: Embed("/assets/virtualimage/promotebutton/buttonPromote_over.png");
+    down-skin: Embed("/assets/virtualimage/promotebutton/buttonPromote_down.png");
+}

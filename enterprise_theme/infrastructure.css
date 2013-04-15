@@ -418,3 +418,22 @@
 	font-weight: bold;
 	color: #fd820e;
 }
+
+.DeployButton {
+ up-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall.png"
+ );
+ over-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_over.png"
+ );
+ down-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_mouseDown.png"
+ );
+ selected-up-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_selected.png"
+ );
+ selected-down-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_selected.png"
+ );
+ selected-over-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_selected_over.png"
+ );
+ disabled-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_disabled.png"
+ );
+ selected-disabled-skin: Embed("/assets/infrastructure/poweronoffbuttonsmall/powerButtonSmall_disabled.png"
+ );
+}
