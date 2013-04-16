@@ -289,3 +289,16 @@
 .NodeVirtualImageDeleted { /**custom property**/
 	source: Embed("/assets/virtualappliance/deleted.png");
 }
+
+
+.NodeVirtualImageLayer {
+    background-image: Embed("/assets/virtualappliance/virtualappliancedeploying_background.png"
+    , scaleGridTop = "7", scaleGridBottom = "11", scaleGridLeft = "7", scaleGridRight = "11");
+    background-size: "100%";
+}
+ 
+.VirtualApplianceDiscardNodeButton {
+ up-skin: Embed("/assets/virtualappliance/discardbutton/buttonConfig.png");
+ over-skin: Embed("/assets/virtualappliance/discardbutton/buttonConfig_over.png");
+ down-skin: Embed("/assets/virtualappliance/discardbutton/buttonConfig_down.png");
+}

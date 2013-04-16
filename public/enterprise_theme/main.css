@@ -703,3 +703,7 @@
 	source:Embed("/assets/application/main/dashboard/estadisticas.jpg");
 }
 
+.CommonAssetsInfoLabel
+{
+ source:Embed("/assets/application/icons/infoLabel.png");
+}
