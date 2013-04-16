@@ -21,7 +21,8 @@ http://IP:3000/
 How to add more elements to the branding form
 =============================================
 
-Locate the hash of the elements you want to modify
+Locate the hash of the elements you want to modify on the file
+lib/theme_utils.rb
 
 ENTERPRISE_IMAGES
 ENTERPRISE_COLORS
