@@ -164,6 +164,36 @@ module ThemeUtils
 				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_over.png'},
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_down.png'}
 			}
+		},
+		'virtualmachinestate' => {
+			'name' => 'Virtual machine state icons',
+			'files' => {
+				'alert' => {'name' => 'Alert','path' => 'assets/application/icons/alert.png'},
+				'crashed' => {'name' => 'Crashed','path' => 'assets/application/icons/crashed.png'},
+				'unknown' => {'name' => 'Unknown','path' => 'assets/application/icons/unknown.png'}
+			}
+		},
+		'virtualappdeploybutton' => {
+			'name' => 'Deploy button',
+			'files' => {
+				'disabled' => {'name' => 'Disabled','path' => 'assets/virtualappliance/deploybutton/disabled_skin.png'},
+				'down' => {'name' => 'Down','path' => 'assets/virtualappliance/deploybutton/down_skin.png'},
+				'over' => {'name' => 'Over','path' => 'assets/virtualappliance/deploybutton/over_skin.png'},
+				'selected_down' => {'name' => 'Selected Down','path' => 'assets/virtualappliance/deploybutton/selected_down_skin.png'},
+				'selected_over' => {'name' => 'Selected Over','path' => 'assets/virtualappliance/deploybutton/selected_over_skin.png'},
+				'selected' => {'name' => 'Selected','path' => 'assets/virtualappliance/deploybutton/selected_skin.png'},
+				'up' => {'name' => 'Up','path' => 'assets/virtualappliance/deploybutton/up_skin.png'}
+			}	
+		},
+		'virtualappdeploybigbutton' => {
+			'name' => 'Deploy big button',
+			'files' => {
+				'disabled' => {'name' => 'Disabled','path' => 'assets/virtualappliance/deployBigButton/disabled_skin.png'},
+				'down' => {'name' => 'Down','path' => 'assets/virtualappliance/deployBigButton/down_skin.png'},
+				'over' => {'name' => 'Over','path' => 'assets/virtualappliance/deployBigButton/over_skin.png'},
+				'selected_over' => {'name' => 'Selected Over','path' => 'assets/virtualappliance/deployBigButton/selected_over_skin.png'},
+				'up' => {'name' => 'Up','path' => 'assets/virtualappliance/deployBigButton/up_skin.png'},
+			}
 		}
 	}
 	ENTERPRISE_CSS = {
@@ -182,8 +212,8 @@ module ThemeUtils
 
 	}
 
-	ENT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/enterprise_theme/')
-	BASE_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/base_theme/')
+	ENT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/enterprise_theme/')
+	BASE_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/base_theme/')
 	UTILS_PATH = File.join(Padrino.root,'/utils/')
 	FLEX_SDK = File.join(UTILS_PATH,'/flex_sdk/')
 
