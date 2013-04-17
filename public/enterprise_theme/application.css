@@ -1314,3 +1314,46 @@ List {
     track-height: 14;
     color: #505050;
 }
+
+.WizardButton {
+    up-skin: Embed("/assets/flexcomponents/wizardbutton/up_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+    over-skin: Embed("/assets/flexcomponents/wizardbutton/over_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+    down-skin: Embed("/assets/flexcomponents/wizardbutton/down_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+    disabled-skin: Embed("/assets/flexcomponents/wizardbutton/disabled_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+    selected-up-skin: Embed("/assets/flexcomponents/wizardbutton/selected_up_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+    selected-over-skin: Embed("/assets/flexcomponents/wizardbutton/selected_over_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+    selected-down-skin: Embed("/assets/flexcomponents/wizardbutton/selected_down_skin.png", 
+    scaleGridTop = "5", scaleGridBottom = "13", scaleGridLeft = "5", scaleGridRight =  "12");
+ 
+    font-weight: bold;
+    text-align: left;
+    padding-left: 40;
+ 
+    color: #ffffff;
+    roll-over-color: #ffffff;
+    text-roll-over-color: #ffffff;
+    text-selected-color: #e5e5e5;
+}
+ 
+.subSectionButton
+{
+ color: #FD820E;
+}
+.subSectionBorder
+{
+ border-color: #FD820E;
+}
+.wizardIcon
+{
+ source:Embed("/assets/flexcomponents/wizardicon/wizard_icon.png");
+}
+.wizardCheck
+{
+ source:Embed("/assets/flexcomponents/wizardicon/wizard_check.png");
+}

@@ -282,3 +282,10 @@ CursorManager {
 	track-height: 10;
 	color: #505050;
 }
+
+
+.CommonAssetsAlertIconAlert
+{
+    /**custom property**/
+    source:Embed("/assets/customcomponents/abicloudalert/icon_alert.png");
+}
