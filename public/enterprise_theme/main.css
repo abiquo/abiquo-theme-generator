@@ -688,13 +688,3 @@
 {
  source:Embed("/assets/customcomponents/abicloudalert/icon_info.png");
 }
-
-.Captured
-{
- source:Embed("/assets/application/icons/captured.png");
-}
-
-.CommonAssetsAlertIconInfo
-{
- source:Embed("/assets/customcomponents/abicloudalert/icon_info.png");
-}
