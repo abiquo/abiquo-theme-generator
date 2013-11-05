@@ -165,6 +165,15 @@ module ThemeUtils
 				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_down.png'}
 			}
 		},
+		'releaseButton' => {
+			'name' => 'Release icon',
+			'files' => {
+				'up_icon' => {'name' => 'Default icon','path' => 'assets/customcomponents/buttons/releasebutton/up_skin.png'},
+				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/customcomponents/buttons/releasebutton/over_skin.png'},
+				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/customcomponents/buttons/releasebutton/down_skin.png'},
+				'disable_icon' => {'name' => 'Disabled icon', 'path' => 'assets/customcomponents/buttons/releasebutton/disabled_skin.png'}
+			}
+		},
 		'virtualmachinestate' => {
 			'name' => 'Virtual machine state icons',
 			'files' => {
@@ -194,7 +203,15 @@ module ThemeUtils
 				'selected_over' => {'name' => 'Selected Over','path' => 'assets/virtualappliance/deployBigButton/selected_over_skin.png'},
 				'up' => {'name' => 'Up','path' => 'assets/virtualappliance/deployBigButton/up_skin.png'},
 			}
+		},
+		'virtualappackbutton' => {
+			'name' => 'ACK button',
+			'files' => {
+				'ackButton' => {'name' => 'ACK button', 'path' => 'assets/virtualappliance/ackButton.png'}
+			}
 		}
+
+
 	}
 	ENTERPRISE_CSS = {
 		'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'},

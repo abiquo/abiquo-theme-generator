@@ -1357,3 +1357,10 @@ List {
 {
  source:Embed("/assets/flexcomponents/wizardicon/wizard_check.png");
 }
+
+.ReleaseButton {
+ up-skin: Embed("/assets/customcomponents/buttons/releasebutton/up_skin.png");
+ over-skin: Embed("/assets/customcomponents/buttons/releasebutton/over_skin.png");
+ down-skin: Embed("/assets/customcomponents/buttons/releasebutton/down_skin.png");
+ disabled-skin: Embed("/assets/customcomponents/buttons/releasebutton/disabled_skin.png");
+}

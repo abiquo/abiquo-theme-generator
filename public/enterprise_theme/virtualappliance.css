@@ -302,3 +302,8 @@
  over-skin: Embed("/assets/virtualappliance/discardbutton/buttonConfig_over.png");
  down-skin: Embed("/assets/virtualappliance/discardbutton/buttonConfig_down.png");
 }
+
+
+.AckButton {
+ icon: Embed("/assets/virtualappliance/ackButton.png");
+}
