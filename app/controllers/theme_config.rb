@@ -23,18 +23,18 @@ AbiquoBranding.controllers :theme_config do
 
   get :create, :map => "/create_theme" do
 
-    if params['type'] == 'enterprise'
+    if params['type'] == 'secured'
 
-      @enterprise = true
-      @images = ThemeUtils::ENTERPRISE_IMAGES.sort
-      @colors = ThemeUtils::ENTERPRISE_COLORS.sort
+      @secured = true
+      @images = ThemeUtils::SECURED_THEME_IMAGES.sort
+      @colors = ThemeUtils::SECURED_THEME_COLORS.sort
 
       render 'theme_config/create_theme_form.erb'
 
-    elsif params['type'] == 'base'
-      @base = true
-      @colors = ThemeUtils::BASE_THEME_COLORS.sort
-      @images = ThemeUtils::BASE_THEME_IMAGES.sort
+    elsif params['type'] == 'unsecured'
+      @unsecured = true
+      @colors = ThemeUtils::UNSECURED_THEME_COLORS.sort
+      @images = ThemeUtils::UNSECURED_THEME_IMAGES.sort
 
       render 'theme_config/create_theme_form.erb'
     end

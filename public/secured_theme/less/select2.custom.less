@@ -1,0 +1,150 @@
+@import "../../../lib/bootstrap/less/variables.less";
+@import "../../../lib/bootstrap/less/mixins.less";
+
+@cfOrange: #d25a2b;
+
+@select2FontSize: 11px;
+@select2BgColor: @grayLighter;
+@select2Height: 24px;
+
+@select2SelectedChoiceColor: @grayDark;
+
+@select2ArrowWidth: 30px;
+@select2ArrowFontSize: 12px;
+@select2ArrowColor: @cfOrange;
+@select2ArrowBorderColor: transparent;
+
+@select2BorderRadius: 3px;
+
+.select2-container {
+    margin: 0px;
+    margin-left: 0 !important;
+    &.select2-container-disabled {
+        .select2-choice {
+            color: #777;
+            .select2-arrow {
+                display: none;
+            }
+        }
+    }
+    .select2-choice {
+        .border-radius(@select2BorderRadius);
+        border: 1px solid @grayLight;
+        font-size: @select2FontSize;
+        height: @select2Height;
+        line-height: @select2Height;
+        // background: transparent;
+        // background-color: @select2BgColor;
+        #gradient > .vertical(@grayLighter, darken(@grayLighter, 10%));
+        color: @select2SelectedChoiceColor;
+        .select2-arrow {
+            width: @select2ArrowWidth;
+            .border-radius(0px);
+            // background: transparent;
+            // background-color: @select2BgColor;
+            #gradient > .vertical(@grayLighter, darken(@grayLighter, 10%));
+            border-left: 0px solid @select2ArrowBorderColor;
+            b {
+                width: 100%;
+                height: @select2Height;
+                text-align: center;
+                background: transparent;
+                font-family: 'EntypoRegular';
+                line-height: @select2Height;
+                font-size: @select2ArrowFontSize;
+                &:before {
+                    height: @select2Height;
+                    display: block;
+                    content:"\25BE";
+                    font-size: @select2ArrowFontSize;
+                    color: @select2ArrowColor;
+                }
+
+            }
+            &:hover {
+                background-color: darken(@select2BgColor, 10%);
+            }
+        }
+        > .select2-chosen {
+            margin-right: 35px;
+        }
+    }
+    &.select2-dropdown-open {
+        .select2-choice {
+            .select2-arrow {
+                b {
+                    &:before {
+                        font-size: @select2ArrowFontSize;
+                        content:"\25B4";
+                    }
+                }
+            }
+
+        }
+
+    }
+    &.raw-select {
+        &:focus {
+            border: none;
+            .box-shadow(none);
+        }
+        .select2-choice {
+            border: none;
+            background: #F2F2F2;
+            .border-radius(0px);
+            &:focus {
+                border: none;
+                .box-shadow(none);
+                outline: 0px auto -webkit-focus-ring-color;
+            }
+            .select2-arrow {
+                background: #F2F2F2;
+                .border-radius(0px);
+                width: 15px;
+                border-left: 1px solid #CCC;
+            }
+            > .select2-chosen {
+                font-size: 11px;
+                font-weight: bold;
+                margin-right: 15px;
+                line-height: 27px;
+            }
+        }
+        &.select2-container-disabled {
+            .select2-choice {
+                .opacity(.2);
+                //background: #C00;
+                .select2-arrow {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.select2-container-active {
+    .select2-choice{
+        .box-shadow(none);
+    }
+}
+.select2-drop {
+    border: none;
+    .border-radius(0px);
+    background: transparent;
+    background: @select2BgColor;
+    .select2-results {
+        padding: 0;
+        margin: 0;
+        li {
+            &:hover {
+                background: @grayLight;
+            }
+        }
+        .select2-highlighted {
+            background: @grayDark;
+        }
+    }
+}
+
+#legend {
+    margin-top: -15px;
+}
