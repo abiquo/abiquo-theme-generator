@@ -1,0 +1,16 @@
+{
+  "name": "abiquo",
+  "version": "0.0.2",
+  "buildfolder": "build",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-cssmin": "~0.6.2",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-processhtml": "~0.2.5"
+  }
+}

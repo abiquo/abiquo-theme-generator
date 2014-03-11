@@ -16,36 +16,37 @@
 
 module ThemeUtils
 
-	SECURED_THEME_COLORS = {
+	CONSOLE_THEME_COLORS = {
 		'background_color' => {'name' => 'Background color', 'color' => 'FFD200', 'file' => 'background_color.txt'},
 		'base_color' => {'name' => 'Base color', 'color' => 'FFD200', 'file' => 'background_color.txt'}
 	}
 
-	SECURED_THEME_CSS = {
-		'base' => {'name' => 'Base CSS', 'file' => 'base.css'}
+	CONSOLE_THEME_CSS = {
+		#'base' => {'name' => 'Base CSS', 'file' => 'base.css'}
 	}
 
-	SECURED_THEME_IMAGES = {
+	CONSOLE_THEME_IMAGES = {
 		'main_menu_logo' => {'name' => 'Main Menu logo', 'file' => 'img/abiquo_login.png'},
-		'main_menu_buttons_sprite' => {'name' => 'Main menu buttons sprite', 'file' => 'assets/application/login_background_image.jpg'},
-		'virtual_machine_default_icon' => {'name' => 'Virtual Machine default icon', 'file' => ''}
+		'main_menu_buttons_sprite' => {'name' => 'Main menu buttons sprite', 'file' => 'img/mainmenu-buttons.png'},
+		'virtual_machine_default_icon' => {'name' => 'Virtual Machine default icon', 'file' => 'img/vm_user_icon.png'}
 	}
 
-	UNSECURED_THEME_COLORS = {
+	LOGIN_THEME_COLORS = {
 		'base_color' => {'name' => 'Base color', 'color' => 'CCCCCC', 'file' => 'base_color.txt'}
 	}
 
-	UNSECURED_THEME_IMAGES = {
-		'login_watermark' => {'name' => 'Login watermark', 'file' => 'assets/application/login/logo.png'},
-		'login_logo' => {'name' => 'Login logo', 'file' => 'assets/application/login/logo.png'}
+	LOGIN_THEME_IMAGES = {
+		'login_watermark' => {'name' => 'Login watermark', 'file' => 'img/abiquo_watermark.png'},
+		'login_logo' => {'name' => 'Login logo', 'file' => 'img/abiquo_login.png'}
 	}
 
-	UNSECURED_THEME_CSS = {
-		'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'}
+	LOGIN_THEME_CSS = {
+		#'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'}
 	}
 
-	SECURED_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/secured_theme/')
-	UNSECURED_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/unsecured_theme/')
+  ROOT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/theme-generator/')
+	CONSOLE_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/console_theme/')
+	LOGIN_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/login_theme/')
 	UTILS_PATH = File.join(Padrino.root,'/utils/')
 
 	class Theme
@@ -59,11 +60,11 @@ module ThemeUtils
 		end
 
 		def replace_images images
-			if @type == :secured
+			if @type == :console
 				images.each do |id, content|
 					id_image = id.split('.')[0]
 					id_file = id.split('.')[1]
-					tmp_image = SECURED_THEME_IMAGES[id_image]
+					tmp_image = CONSOLE_THEME_IMAGES[id_image]
 					
 					#if the image is not found, continue with the next
 					next if not tmp_image
@@ -76,11 +77,11 @@ module ThemeUtils
 						@custom_images[id_image] = tmp_image
 					end
 				end
-			elsif @type == :unsecured
+			elsif @type == :login
 				images.each do |id, content|
 					id_image = id.split('.')[0]
 					id_file = id.split('.')[1]
-					tmp_image = UNSECURED_THEME_IMAGES[id_image]
+					tmp_image = LOGIN_THEME_IMAGES[id_image]
 					
 					#if the image is not found, continue with the next
 					next if not tmp_image
@@ -97,42 +98,42 @@ module ThemeUtils
 		end
 
 		def replace_colors colors
-			if @type == :secured
+			if @type == :console
 				colors.each do |id, color|
 					case id
 						when "color_loader" then
-							File.open(@path + SECURED_THEME_COLORS[id]['file'], 'r+')  do |f|
+							File.open(@path + LOGIN_THEME_COLORS[id]['file'], 'r+')  do |f|
 								line = f.readlines[0].gsub(/[A-Fa-f0-9]{6}/, color)
 								f.pos = 0
 								f.write line
 							end
 						else
-							File.open(@path + SECURED_THEME_COLORS[id]['file'], 'r+')  do |f|
+							File.open(@path + LOGIN_THEME_COLORS[id]['file'], 'r+')  do |f|
 								lines = f.readlines
-								group_init = lines.index{|x| x.include? SECURED_THEME_COLORS[id]['group']}
+								group_init = lines.index{|x| x.include? LOGIN_THEME_COLORS[id]['group']}
 								return unless group_init
 								group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-								color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  SECURED_THEME_COLORS[id]['element']}
+								color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  LOGIN_THEME_COLORS[id]['element']}
 								lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
 								f.pos = 0
 								f.write lines
 							end
 					end
-					@custom_colors[id] = SECURED_THEME_COLORS[id]
+					@custom_colors[id] = CONSOLE_THEME_COLORS[id]
 				end
-			elsif @type == :unsecured
+			elsif @type == :login
 				colors.each do |id, color|
-					File.open(@path + UNSECURED_THEME_COLORS[id]['file'], 'r+')  do |f|
+					File.open(@path + LOGIN_THEME_COLORS[id]['file'], 'r+')  do |f|
 						lines = f.readlines
-						group_init = lines.index{|x| x.include? UNSECURED_THEME_COLORS[id]['group']}
+						group_init = lines.index{|x| x.include? LOGIN_THEME_COLORS[id]['group']}
 						return unless group_init
 						group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-						color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  UNSECURED_THEME_COLORS[id]['element']}
+						color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  LOGIN_THEME_COLORS[id]['element']}
 						lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
 						f.pos = 0
 						f.write lines
 					end
-					@custom_colors[id] = UNSECURED_THEME_COLORS[id]
+					@custom_colors[id] = LOGIN_THEME_COLORS[id]
 				end
 
 			end
@@ -140,10 +141,10 @@ module ThemeUtils
 	end
 
 	def compile theme
-		if theme.type == :secured
-			css_files = SECURED_THEME_CSS
+		if theme.type == :console
+			css_files = CONSOLE_THEME_CSS
 		else
-			css_files = UNSECURED_THEME_CSS
+			css_files = LOGIN_THEME_CSS
 		end
 
 		css_files.values.each do |css|
@@ -159,10 +160,10 @@ module ThemeUtils
 
 	def pack theme
 		css_files = ''
-		if theme.type == :secured
-			css_files = SECURED_THEME_CSS
+		if theme.type == :console
+			css_files = CONSOLE_THEME_CSS
 		else
-			css_files = UNSECURED_THEME_CSS
+			css_files = LOGIN_THEME_CSS
 		end
 
 		#Delete useless files
@@ -178,24 +179,24 @@ module ThemeUtils
 		return "#{theme.name}.tar.gz"
 	end
 
-	def create_base_theme name
-		path = "/tmp/#{name}_base_theme/"
+	def create_login_theme name
+		path = "/tmp/#{name}_login_theme/"
 		
-		raise Exception.new 'Already exists a base theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_base_theme.tar.gz"
+		raise Exception.new 'Already exists a login theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_login_theme.tar.gz"
 		%x(rm -rf #{path})
-		%x(cp -R #{BASE_THEME_EXAMPLE_PATH} #{path})
+		%x(cp -R #{LOGIN_THEME_EXAMPLE_PATH} #{path})
 
-		return Theme.new :base, "#{name}_base_theme", path
+		return Theme.new :login, "#{name}_login_theme", path
 	end
 
-	def create_ent_theme name
-		path = "/tmp/#{name}_theme/"
+	def create_console_theme name
+		path = "/tmp/#{name}_console_theme/"
 
-		raise Exception.new 'Already exists a theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_theme.tar.gz"
+		raise Exception.new 'Already exists a console theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_console_theme.tar.gz"
 		%x(rm -rf #{path})
-		%x(cp -R #{ENT_THEME_EXAMPLE_PATH} #{path})
+		%x(cp -R #{CONSOLE_THEME_EXAMPLE_PATH} #{path})
 
-		return Theme.new :enterprise, "#{name}_theme", path
+		return Theme.new :console, "#{name}_console_theme", path
 	end
 
 end

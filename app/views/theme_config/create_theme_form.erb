@@ -53,10 +53,10 @@
     <div class="container">
       <form name="theme_form" class="form-horizontal" style="margin-top: 20px" action="/create_theme" method="POST" enctype='multipart/form-data'>
         <fieldset>
-        <% if @secured %>
-          <input type='hidden' name='type' value='secured'>
+        <% if @console %>
+          <input type='hidden' name='type' value='console'>
           <div class="control-group">
-            <h1>Configure your new secured theme</h1>
+            <h1>Configure your new console theme</h1>
           </div>
           <div class="control-group">
             <label class="control-label" for="input01">Theme name *</label>
@@ -97,7 +97,7 @@
 
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
-                    <img src="secured_theme/<%= image['file'] %>">
+                    <img src="console_theme/<%= image['file'] %>">
                     <label class="control-label" for="up_icon"><%= image['name'] %></label>
                     <div class="controls">
                       <input class="input-file" id="up_icon" type="file" name='<%= id %>'>
@@ -118,7 +118,7 @@
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
                     <% image['files'].each do |id_file, file| %>
-                      <img src="secured_theme/<%= file['path'] %>">
+                      <img src="console_theme/<%= file['path'] %>">
                       <label class="control-label" for="up_icon"><%= file['name'] %></label>
                       <div class="controls">
                         <input class="input-file" id="up_icon" type="file" name='<%= id %>.<%= id_file %>'>
@@ -134,10 +134,10 @@
 
         <% end %>
 
-        <% if @unsecured %>
-          <input type='hidden' name='type' value='unsecured'>
+        <% if @login %>
+          <input type='hidden' name='type' value='login'>
           <div class="control-group">
-            <h1>Configure your new unsecured theme</h1>
+            <h1>Configure your new login theme</h1>
           </div>
           <div class="control-group">
             <label class="control-label" for="input01">Theme's name *</label>
@@ -177,7 +177,7 @@
 
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
-                      <img src="unsecured_theme/<%= image['file'] %>">
+                      <img src="login_theme/<%= image['file'] %>">
                     <label class="control-label" for="up_icon"><%= image['name'] %></label>
                     <div class="controls">
                       <input class="input-file" id="up_icon" type="file" name='<%= id %>'>
@@ -198,7 +198,7 @@
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
                     <% image['files'].each do |id_file, file| %>
-                      <img src="unsecured_theme/<%= file['path'] %>">
+                      <img src="login_theme/<%= file['path'] %>">
                       <label class="control-label" for="up_icon"><%= file['name'] %></label>
                       <div class="controls">
                         <input class="input-file" id="up_icon" type="file" name='<%= id %>.<%= id_file %>'>
