@@ -70,10 +70,9 @@ AbiquoBranding.controllers :theme_config do
     #Replace example COLORS by custom COLORS
     theme.replace_colors custom_colors
 
-    #Compile --> This needs to be updated
-    #ThemeUtils.compile theme
-    #@file_name = ThemeUtils.pack theme
-
+    #Compile
+    ThemeUtils.compile theme
+    @file_name = ThemeUtils.pack theme 
     render 'theme_config/created.erb'
   end
 

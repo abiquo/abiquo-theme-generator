@@ -17,12 +17,8 @@
 module ThemeUtils
 
 	CONSOLE_THEME_COLORS = {
-		'background_color' => {'name' => 'Background color', 'color' => 'FFD200', 'file' => 'background_color.txt'},
-		'base_color' => {'name' => 'Base color', 'color' => 'FFD200', 'file' => 'background_color.txt'}
-	}
-
-	CONSOLE_THEME_CSS = {
-		#'base' => {'name' => 'Base CSS', 'file' => 'base.css'}
+		'backgroundColor' => {'name' => 'Background color', 'color' => 'AA3333', 'file' => 'less/app.less'},
+		'baseColor' => {'name' => 'Base color', 'color' => 'AA3333', 'file' => 'less/app.less'}
 	}
 
 	CONSOLE_THEME_IMAGES = {
@@ -32,7 +28,7 @@ module ThemeUtils
 	}
 
 	LOGIN_THEME_COLORS = {
-		'base_color' => {'name' => 'Base color', 'color' => 'CCCCCC', 'file' => 'base_color.txt'}
+		'baseColor' => {'name' => 'Base color', 'color' => 'BB6666', 'file' => 'less/app_unsecured.less'}
 	}
 
 	LOGIN_THEME_IMAGES = {
@@ -40,13 +36,8 @@ module ThemeUtils
 		'login_logo' => {'name' => 'Login logo', 'file' => 'img/abiquo_login.png'}
 	}
 
-	LOGIN_THEME_CSS = {
-		#'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'}
-	}
-
-  ROOT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/theme-generator/')
-	CONSOLE_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/console_theme/')
-	LOGIN_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/login_theme/')
+  ROOT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/root_theme_files/')
+	THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/example_theme/')
 	UTILS_PATH = File.join(Padrino.root,'/utils/')
 
 	class Theme
@@ -100,81 +91,37 @@ module ThemeUtils
 		def replace_colors colors
 			if @type == :console
 				colors.each do |id, color|
-					case id
-						when "color_loader" then
-							File.open(@path + LOGIN_THEME_COLORS[id]['file'], 'r+')  do |f|
-								line = f.readlines[0].gsub(/[A-Fa-f0-9]{6}/, color)
-								f.pos = 0
-								f.write line
-							end
-						else
-							File.open(@path + LOGIN_THEME_COLORS[id]['file'], 'r+')  do |f|
-								lines = f.readlines
-								group_init = lines.index{|x| x.include? LOGIN_THEME_COLORS[id]['group']}
-								return unless group_init
-								group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-								color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  LOGIN_THEME_COLORS[id]['element']}
-								lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
-								f.pos = 0
-								f.write lines
-							end
-					end
-					@custom_colors[id] = CONSOLE_THEME_COLORS[id]
+					%x(sed -i.bak "s/@#{id}: #.\\{6\\}/@#{id}: ##{color}/" #{@path}less/app.less)
 				end
-			elsif @type == :login
+			else
 				colors.each do |id, color|
-					File.open(@path + LOGIN_THEME_COLORS[id]['file'], 'r+')  do |f|
-						lines = f.readlines
-						group_init = lines.index{|x| x.include? LOGIN_THEME_COLORS[id]['group']}
-						return unless group_init
-						group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-						color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  LOGIN_THEME_COLORS[id]['element']}
-						lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
-						f.pos = 0
-						f.write lines
-					end
-					@custom_colors[id] = LOGIN_THEME_COLORS[id]
+					%x(sed -i.bak "s/@#{id}: #.\\{6\\}/@#{id}: ##{color}/" #{@path}less/app_unsecured.less)
 				end
-
 			end
 		end
+
 	end
 
 	def compile theme
-		if theme.type == :console
-			css_files = CONSOLE_THEME_CSS
-		else
-			css_files = LOGIN_THEME_CSS
-		end
 
-		css_files.values.each do |css|
-		 	if css['file'].include? 'base.css'
-		 		res = %x(#{FLEX_SDK}/bin/mxmlc #{theme.path + css['file']} -compiler.library-path #{UTILS_PATH}/degrafa_swc #{FLEX_SDK}/frameworks/libs/flex.swc)
-		 		raise Exception.new "Error compiling #{theme.path + css['file']}: #{res}" unless $? == 0
-		 	else
-		 		res = %x(#{FLEX_SDK}/bin/mxmlc #{theme.path + css['file']})
-		 		raise Exception.new "Error compiling #{theme.path + css['file']}: #{res}" unless $? == 0
-		 	end
+		# Copy the root theme files into tmp folder
+		rootpath = "/tmp/ROOT_THEME"
+		%x(cp -R #{ROOT_THEME_EXAMPLE_PATH} #{rootpath})
+		%x(mv #{theme.path} '#{rootpath}/app/theme/#{theme.name}')
+		if theme.type == :console
+			%x(cd #{rootpath}; npm install; grunt create_secured_theme --theme=#{theme.name})
+		else
+			%x(cd #{rootpath}; npm install; grunt create_unsecured_theme --theme=#{theme.name}; rm -rf build/theme/abicloudDefault)
 		end
 	end
 
 	def pack theme
-		css_files = ''
-		if theme.type == :console
-			css_files = CONSOLE_THEME_CSS
-		else
-			css_files = LOGIN_THEME_CSS
-		end
-
-		#Delete useless files
-		css_files.values.each {|css| %x(rm -f #{theme.path + css['file']})}
-		%x(rm -rf #{theme.path}/assets/)
 
 		#Tar it!
-		%x(cd /tmp/; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz  #{theme.name})
+		%x(cd /tmp/ROOT_THEME/build/theme; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz  #{theme.name})
 		raise Exception.new "Error running tar on #{theme.path}" unless $? == 0
 
-		%x(rm -rf /tmp/#{theme.path})
+		%x(rm -rf /tmp/ROOT_THEME)
 
 		return "#{theme.name}.tar.gz"
 	end
@@ -184,7 +131,7 @@ module ThemeUtils
 		
 		raise Exception.new 'Already exists a login theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_login_theme.tar.gz"
 		%x(rm -rf #{path})
-		%x(cp -R #{LOGIN_THEME_EXAMPLE_PATH} #{path})
+		%x(cp -R #{THEME_EXAMPLE_PATH} #{path})
 
 		return Theme.new :login, "#{name}_login_theme", path
 	end
@@ -194,7 +141,7 @@ module ThemeUtils
 
 		raise Exception.new 'Already exists a console theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_console_theme.tar.gz"
 		%x(rm -rf #{path})
-		%x(cp -R #{CONSOLE_THEME_EXAMPLE_PATH} #{path})
+		%x(cp -R #{THEME_EXAMPLE_PATH} #{path})
 
 		return Theme.new :console, "#{name}_console_theme", path
 	end
