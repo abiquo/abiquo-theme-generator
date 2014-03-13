@@ -97,7 +97,7 @@
 
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
-                    <img src="console_theme/<%= image['file'] %>">
+                    <img src="example_theme/<%= image['file'] %>">
                     <label class="control-label" for="up_icon"><%= image['name'] %></label>
                     <div class="controls">
                       <input class="input-file" id="up_icon" type="file" name='<%= id %>'>
@@ -118,7 +118,7 @@
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
                     <% image['files'].each do |id_file, file| %>
-                      <img src="console_theme/<%= file['path'] %>">
+                      <img src="example_theme/<%= file['path'] %>">
                       <label class="control-label" for="up_icon"><%= file['name'] %></label>
                       <div class="controls">
                         <input class="input-file" id="up_icon" type="file" name='<%= id %>.<%= id_file %>'>
@@ -177,7 +177,7 @@
 
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
-                      <img src="login_theme/<%= image['file'] %>">
+                      <img src="example_theme/<%= image['file'] %>">
                     <label class="control-label" for="up_icon"><%= image['name'] %></label>
                     <div class="controls">
                       <input class="input-file" id="up_icon" type="file" name='<%= id %>'>
@@ -198,7 +198,7 @@
                 <div id="collapse_<%= id %>" class="accordion-body collapse">
                   <div class="accordion-inner">
                     <% image['files'].each do |id_file, file| %>
-                      <img src="login_theme/<%= file['path'] %>">
+                      <img src="example_theme/<%= file['path'] %>">
                       <label class="control-label" for="up_icon"><%= file['name'] %></label>
                       <div class="controls">
                         <input class="input-file" id="up_icon" type="file" name='<%= id %>.<%= id_file %>'>

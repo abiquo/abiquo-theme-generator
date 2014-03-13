@@ -111,14 +111,19 @@ module ThemeUtils
 		if theme.type == :console
 			%x(cd #{rootpath}; npm install; grunt create_secured_theme --theme=#{theme.name})
 		else
-			%x(cd #{rootpath}; npm install; grunt create_unsecured_theme --theme=#{theme.name}; rm -rf build/theme/abicloudDefault)
+			%x(cd #{rootpath}; npm install; grunt create_unsecured_theme --theme=#{theme.name})
 		end
 	end
 
 	def pack theme
 
 		#Tar it!
-		%x(cd /tmp/ROOT_THEME/build/theme; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz  #{theme.name})
+		if theme.type == :console
+			%x(cd /tmp/ROOT_THEME/build/theme; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz  #{theme.name})
+		else
+			%x(cd /tmp/ROOT_THEME/build/theme; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz #{theme.name} abicloudDefault)
+		end
+
 		raise Exception.new "Error running tar on #{theme.path}" unless $? == 0
 
 		%x(rm -rf /tmp/ROOT_THEME)

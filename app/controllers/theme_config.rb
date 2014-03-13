@@ -72,7 +72,7 @@ AbiquoBranding.controllers :theme_config do
 
     #Compile
     ThemeUtils.compile theme
-    @file_name = ThemeUtils.pack theme 
+    file_name = ThemeUtils.pack theme 
     render 'theme_config/created.erb'
   end
 
