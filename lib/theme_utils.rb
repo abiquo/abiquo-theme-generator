@@ -16,223 +16,85 @@
 
 module ThemeUtils
 
-	BASE_THEME_COLORS = {
-		'color_loader' => {'name' => 'Loader ProgressBar color', 'color' => 'FFD200', 'file' => 'color_loader.txt'}
+  BASE_THEME_IMAGES = {
+    'abiquo_gray' => {'name' => 'abiquo_gray', 'file' => 'img/abiquo_gray.png'},
+    'abiquo_login' => {'name' => 'abiquo_login', 'file' => 'img/abiquo_login.png'},
+    'abiquo_logo' => {'name' => 'abiquo_logo', 'file' => 'img/abiquo_logo.png'},
+    'abiquo_thumb' => {'name' => 'abiquo_thumb', 'file' => 'img/abiquo_thumb.png'},
+    'abiquo_watermark' => {'name' => 'abiquo_watermark', 'file' => 'img/abiquo_watermark.png'},
+    'arrow' => {'name' => 'arrow', 'file' => 'img/arrow.png'},
+    'bg-container1-b' => {'name' => 'bg-container1-b', 'file' => 'img/bg-container1-b.png'},
+    'bg-container1' => {'name' => 'bg-container1', 'file' => 'img/bg-container1.png'},
+    'bg-sort' => {'name' => 'bg-sort', 'file' => 'img/bg-sort.png'},
+    'bg-topiclist1' => {'name' => 'bg-topiclist1', 'file' => 'img/bg-topiclist1.gif'},
+    'btn-green-c' => {'name' => 'btn-green-c', 'file' => 'img/btn-green-c.png'},
+    'btn-search' => {'name' => 'btn-search', 'file' => 'img/btn-search.png'},
+    'btn-sprite-top' => {'name' => 'btn-sprite-top', 'file' => 'img/btn-sprite-top.png'},
+    'btn-t-b' => {'name' => 'btn-t-b', 'file' => 'img/btn-t-b.png'},
+    'check' => {'name' => 'check', 'file' => 'img/check.png'},
+    'chef_icon' => {'name' => 'chef_icon', 'file' => 'img/chef_icon.png'},
+    'close' => {'name' => 'close', 'file' => 'img/close.png'},
+    'discard_changes' => {'name' => 'discard_changes', 'file' => 'img/discard_changes.png'},
+    'divider1' => {'name' => 'divider1', 'file' => 'img/divider1.gif'},
+    'divider2' => {'name' => 'divider2', 'file' => 'img/divider2.gif'},
+    'divider' => {'name' => 'divider', 'file' => 'img/divider.gif'},
+    'drag' => {'name' => 'drag', 'file' => 'img/drag.png'},
+    'glyphicons-halflings-white' => {'name' => 'glyphicons-halflings-white', 'file' => 'img/glyphicons-halflings-white.png'},
+    'green-btn' => {'name' => 'green-btn', 'file' => 'img/green-btn.png'},
+    'ico-edit' => {'name' => 'ico-edit', 'file' => 'img/ico-edit.gif'},
+    'icon_error' => {'name' => 'icon_error', 'file' => 'img/icon_error.png'},
+    'imagotipo' => {'name' => 'imagotipo', 'file' => 'img/imagotipo.jpg'},
+    'img1' => {'name' => 'img1', 'file' => 'img/img1.png'},
+    'img2' => {'name' => 'img2', 'file' => 'img/img2.png'},
+    'img3' => {'name' => 'img3', 'file' => 'img/img3.png'},
+    'item1' => {'name' => 'item1', 'file' => 'img/item1.jpg'},
+    'item2' => {'name' => 'item2', 'file' => 'img/item2.jpg'},
+    'list_hor_separator' => {'name' => 'list_hor_separator', 'file' => 'img/list_hor_separator.png'},
+    'list_ver_separator' => {'name' => 'list_ver_separator', 'file' => 'img/list_ver_separator.png'},
+    'loadingCursor' => {'name' => 'loadingCursor', 'file' => 'img/loadingCursor.gif'},
+    'loading' => {'name' => 'loading', 'file' => 'img/loading.gif'},
+    'logo' => {'name' => 'logo', 'file' => 'img/logo.jpg'},
+    'logo' => {'name' => 'logo', 'file' => 'img/logo.png'},
+    'mainmenu-buttons' => {'name' => 'mainmenu-buttons', 'file' => 'img/mainmenu-buttons.png'},
+    'map-marker' => {'name' => 'map-marker', 'file' => 'img/map-marker.png'},
+    'photo1' => {'name' => 'photo1', 'file' => 'img/photo1.jpg'},
+    'refresh_black' => {'name' => 'refresh_black', 'file' => 'img/refresh_black.png'},
+    'refresh' => {'name' => 'refresh', 'file' => 'img/refresh.png'},
+    'separator' => {'name' => 'separator', 'file' => 'img/separator.png'},
+    'spinner' => {'name' => 'spinner', 'file' => 'img/spinner.gif'},
+    'user' => {'name' => 'user', 'file' => 'img/user.png'},
+    'vm_corner_icon' => {'name' => 'vm_corner_icon', 'file' => 'img/vm_corner_icon.png'},
+    'vm_slave_icon' => {'name' => 'vm_slave_icon', 'file' => 'img/vm_slave_icon.png'},
+    'vm_tomaster_icon' => {'name' => 'vm_tomaster_icon', 'file' => 'img/vm_tomaster_icon.png'},
+    'vm_user_icon_bottom' => {'name' => 'vm_user_icon_bottom', 'file' => 'img/vm_user_icon_bottom.png'},
+    'vm_user_icon' => {'name' => 'vm_user_icon', 'file' => 'img/vm_user_icon.png'}
+
+  }
+
+	CONSOLE_THEME_COLORS = {
+		'backgroundColor' => {'name' => 'Background color', 'color' => 'AA3333', 'file' => 'less/app.less'},
+		'baseColor' => {'name' => 'Base color', 'color' => 'AA3333', 'file' => 'less/app.less'}
 	}
 
-	BASE_THEME_CSS = {
-		'base' => {'name' => 'Base CSS', 'file' => 'base.css'},
-		'logo' => {'name' => 'Login Logo CSS', 'file' => 'logo.css'}
+	CONSOLE_THEME_IMAGES = {
+		'main_menu_logo' => {'name' => 'Main Menu logo', 'file' => 'img/abiquo_login.png'},
+		'main_menu_buttons_sprite' => {'name' => 'Main menu buttons sprite', 'file' => 'img/mainmenu-buttons.png'},
+		'virtual_machine_default_icon' => {'name' => 'Virtual Machine default icon', 'file' => 'img/vm_user_icon.png'}
 	}
 
-	BASE_THEME_IMAGES = {
-		'custom_preloader_logo' => {'name' => 'Preloader Logo', 'file' => 'CustomPreloaderLogo.png'},
-		'login_logo' => {'name' => 'Login logo', 'file' => 'assets/application/login/logo.png'},
-		'login_background' => {'name' => 'Login Background', 'file' => 'assets/application/login_background_image.jpg'},
-		'button' => {
-			'name' => 'Button skins',
-			'files' => {
-				'up_skin' => {'name' => 'Default skin', 'path' => 'assets/flexcomponents/button/up_skin.png'},
-				'over_skin' => {'name' => 'Over skin', 'path' => 'assets/flexcomponents/button/over_skin.png'},
-				'down_skin' => {'name' => 'Down skin', 'path' => 'assets/flexcomponents/button/down_skin.png'},
-				'disabled_skin' => {'name' => 'Disabled skin', 'path' => 'assets/flexcomponents/button/disabled_skin.png'}
-			}
-		}
+	LOGIN_THEME_COLORS = {
+		'baseColor' => {'name' => 'Base color', 'color' => 'BB6666', 'file' => 'less/app_unsecured.less'}
 	}
 
-	ENTERPRISE_COLORS = {
-		#'footer_text' => {'name' => 'Footer Text', 'group' => 'footerText', 'element' => 'color', 'color' => 'CCCCCC', 'file' => 'main.css'}
+	LOGIN_THEME_IMAGES = {
+		'login_watermark' => {'name' => 'Login watermark', 'file' => 'img/abiquo_watermark.png'},
+		'login_logo' => {'name' => 'Login logo', 'file' => 'img/abiquo_login.png'}
 	}
 
-	ENTERPRISE_IMAGES = {
-		'generalpanel' => {
-			'name' => 'Header and bottom skins',
-			'files' => {
-				'header' => {'name' => 'Header skin', 'path' => 'assets/application/skins/generalpanel_header_skin.png'},
-				'bottom' => {'name' => 'Bottom skin', 'path' => 'assets/application/skins/generalpanel_bottom_skin.png'},		
-			}
-		},
-		'button' => {
-			'name' => 'Button skins',
-			'files' => {
-				'up_skin' => {'name' => 'Default skin', 'path' => 'assets/flexcomponents/button/up_skin.png'},
-				'over_skin' => {'name' => 'Over skin', 'path' => 'assets/flexcomponents/button/over_skin.png'},
-				'down_skin' => {'name' => 'Down skin', 'path' => 'assets/flexcomponents/button/down_skin.png'},
-				'disabled_skin' => {'name' => 'Disabled skin', 'path' => 'assets/flexcomponents/button/disabled_skin.png'}
-			}
-		},
-		'configuration' => {
-			'name' => 'Configuration icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/configurationbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/configurationbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/configurationbutton/down_icon.png'}
-			}
-		},
-		'documentation' => {
-			'name' => 'Documentation icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/documentationbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/documentationbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/documentationbutton/down_icon.png'}
-			}
-		},
-		'infrastructure' => {
-			'name' => 'Infrastructure icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/infrastructurebutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/infrastructurebutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/infrastructurebutton/down_icon.png'}
-			}
-		},
-		'logout' => {
-			'name' => 'Logout icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/logoutbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/logoutbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/logoutbutton/down_icon.png'}
-			}
-		},
-		'events' => {
-			'name' => 'Events icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/meteringbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/meteringbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/meteringbutton/down_icon.png'}
-			}
-		},
-		'pricing' => {
-			'name' => 'Pricing icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/pricingbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/pricingbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/pricingbutton/down_icon.png'}
-			}
-		},
-		'reports' => {
-			'name' => 'Reports icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/reportbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/reportbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/reportbutton/down_icon.png'}
-			}
-		},
-		'home' => {
-			'name' => 'Home icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/startbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/startbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/startbutton/down_icon.png'}
-			}
-		},
-		'support' => {
-			'name' => 'Support icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/supportbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/supportbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/supportbutton/down_icon.png'}
-			}
-		},
-		'users' => {
-			'name' => 'Users icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/usersbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/usersbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/usersbutton/down_icon.png'}
-			}
-		},
-		'virtualdatacenters' => {
-			'name' => 'Virtual Datacenters icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/virtualappbutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualappbutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/virtualappbutton/down_icon.png'}
-			}
-		},
-		'appslibrary' => {
-			'name' => 'Apps library icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon', 'path' => 'assets/application/main/header/virtualimagebutton/up_icon.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/application/main/header/virtualimagebutton/over_icon.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/application/main/header/virtualimagebutton/down_icon.png'}
-			}
-		},
-		'promoteicon' => {
-			'name' => 'Promote virtualimage icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon','path' => 'assets/virtualimage/promotebutton/buttonPromote.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_over.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/virtualimage/promotebutton/buttonPromote_down.png'}
-			}
-		},
-		'releaseButton' => {
-			'name' => 'Release icon',
-			'files' => {
-				'up_icon' => {'name' => 'Default icon','path' => 'assets/customcomponents/buttons/releasebutton/up_skin.png'},
-				'over_icon' => {'name' => 'Over icon', 'path' => 'assets/customcomponents/buttons/releasebutton/over_skin.png'},
-				'down_icon' => {'name' => 'Down icon', 'path' => 'assets/customcomponents/buttons/releasebutton/down_skin.png'},
-				'disable_icon' => {'name' => 'Disabled icon', 'path' => 'assets/customcomponents/buttons/releasebutton/disabled_skin.png'}
-			}
-		},
-		'virtualmachinestate' => {
-			'name' => 'Virtual machine state icons',
-			'files' => {
-				'alert' => {'name' => 'Alert','path' => 'assets/application/icons/alert.png'},
-				'crashed' => {'name' => 'Crashed','path' => 'assets/application/icons/crashed.png'},
-				'unknown' => {'name' => 'Unknown','path' => 'assets/application/icons/unknown.png'}
-			}
-		},
-		'virtualappdeploybutton' => {
-			'name' => 'Deploy button',
-			'files' => {
-				'disabled' => {'name' => 'Disabled','path' => 'assets/virtualappliance/deploybutton/disabled_skin.png'},
-				'down' => {'name' => 'Down','path' => 'assets/virtualappliance/deploybutton/down_skin.png'},
-				'over' => {'name' => 'Over','path' => 'assets/virtualappliance/deploybutton/over_skin.png'},
-				'selected_down' => {'name' => 'Selected Down','path' => 'assets/virtualappliance/deploybutton/selected_down_skin.png'},
-				'selected_over' => {'name' => 'Selected Over','path' => 'assets/virtualappliance/deploybutton/selected_over_skin.png'},
-				'selected' => {'name' => 'Selected','path' => 'assets/virtualappliance/deploybutton/selected_skin.png'},
-				'up' => {'name' => 'Up','path' => 'assets/virtualappliance/deploybutton/up_skin.png'}
-			}	
-		},
-		'virtualappdeploybigbutton' => {
-			'name' => 'Deploy big button',
-			'files' => {
-				'disabled' => {'name' => 'Disabled','path' => 'assets/virtualappliance/deployBigButton/disabled_skin.png'},
-				'down' => {'name' => 'Down','path' => 'assets/virtualappliance/deployBigButton/down_skin.png'},
-				'over' => {'name' => 'Over','path' => 'assets/virtualappliance/deployBigButton/over_skin.png'},
-				'selected_over' => {'name' => 'Selected Over','path' => 'assets/virtualappliance/deployBigButton/selected_over_skin.png'},
-				'up' => {'name' => 'Up','path' => 'assets/virtualappliance/deployBigButton/up_skin.png'},
-			}
-		},
-		'virtualappackbutton' => {
-			'name' => 'ACK button',
-			'files' => {
-				'ackButton' => {'name' => 'ACK button', 'path' => 'assets/virtualappliance/ackButton.png'}
-			}
-		}
-
-
-	}
-	ENTERPRISE_CSS = {
-		'abicloud_premium' => {'name' => 'Abicloud Premium', 'file' => 'abicloud_premium.css'},
-		'application' => {'name' => 'Application', 'file' => 'application.css'},
-		'configuration_components_heart_beat' => {'name' => 'Configuration Components HeartBeat', 'file' => 'ConfigurationComponentsHeartBeat.css'},
-		'configuration_components_management' => {'name' => 'Configuration Components Management', 'file' => 'ConfigurationComponentsManagement.css'},
-		'infrastructure' => {'name' => 'Infrastructure', 'file' => 'infrastructure.css'},
-		'main' => {'name' => 'Main', 'file' => 'main.css'},
-		'metering' => {'name' => 'Metering', 'file' => 'metering.css'},
-		'networking' => {'name' => 'Networking', 'file' => 'networking.css'},
-		'user' => {'name' => 'User', 'file' => 'user.css'},
-		'virtualappliance' => {'name' => 'Virtual Appliance', 'file' => 'virtualappliance.css'},
-		'virtualdatacenter' => {'name' => 'Virtual DataCenter', 'file' => 'virtualdatacenter.css'},
-		'virtualimage' => {'name' => 'Virtual Image', 'file' => 'virtualimage.css'}
-
-	}
-
-	ENT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/enterprise_theme/')
-	BASE_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/base_theme/')
+  ROOT_THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/root_theme_files/')
+  BASE_THEME_PATH = File.join(Padrino.root,'/public/root_theme_files/app/theme/abicloudDefault/')
+	THEME_EXAMPLE_PATH = File.join(Padrino.root,'/public/example_theme/')
 	UTILS_PATH = File.join(Padrino.root,'/utils/')
-	FLEX_SDK = File.join(UTILS_PATH,'/flex_sdk/')
 
 	class Theme
 		attr_reader :name, :path, :type, :custom_files
@@ -245,11 +107,11 @@ module ThemeUtils
 		end
 
 		def replace_images images
-			if @type == :base
+			if @type == :console
 				images.each do |id, content|
 					id_image = id.split('.')[0]
 					id_file = id.split('.')[1]
-					tmp_image = BASE_THEME_IMAGES[id_image]
+					tmp_image = CONSOLE_THEME_IMAGES[id_image]
 					
 					#if the image is not found, continue with the next
 					next if not tmp_image
@@ -262,11 +124,11 @@ module ThemeUtils
 						@custom_images[id_image] = tmp_image
 					end
 				end
-			elsif @type == :enterprise
+			elsif @type == :login
 				images.each do |id, content|
 					id_image = id.split('.')[0]
 					id_file = id.split('.')[1]
-					tmp_image = ENTERPRISE_IMAGES[id_image]
+					tmp_image = LOGIN_THEME_IMAGES[id_image]
 					
 					#if the image is not found, continue with the next
 					next if not tmp_image
@@ -279,109 +141,102 @@ module ThemeUtils
 						@custom_images[id_image] = tmp_image
 					end
 				end
+      elsif @type == :base
+        images.each do |id, content|
+          id_image = id.split('.')[0]
+          id_file = id.split('.')[1]
+          tmp_image = BASE_THEME_IMAGES[id_image]
+
+          next if not tmp_image
+
+          if tmp_image["file"]
+            File.open(@path + tmp_image['file'], 'w') { |f| f.puts content }
+            @custom_images[id_image] = tmp_image
+          elsif tmp_image["files"]
+            File.open(@path + tmp_image['files'][id_file]['path'], 'w') { |f| f.puts content } if tmp_image['files'][id_file]
+            @custom_images[id_image] = tmp_image
+          end
+        end
 			end
 		end
 
 		def replace_colors colors
-			if @type == :base
+			if @type == :console
 				colors.each do |id, color|
-					case id
-						when "color_loader" then
-							File.open(@path + BASE_THEME_COLORS[id]['file'], 'r+')  do |f|
-								line = f.readlines[0].gsub(/[A-Fa-f0-9]{6}/, color)
-								f.pos = 0
-								f.write line
-							end
-						else
-							File.open(@path + BASE_THEME_COLORS[id]['file'], 'r+')  do |f|
-								lines = f.readlines
-								group_init = lines.index{|x| x.include? BASE_THEME_COLORS[id]['group']}
-								return unless group_init
-								group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-								color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  BASE_THEME_COLORS[id]['element']}
-								lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
-								f.pos = 0
-								f.write lines
-							end
-					end
-					@custom_colors[id] = BASE_THEME_COLORS[id]
+					%x(sed -i.bak "s/@#{id}: #.\\{6\\}/@#{id}: ##{color}/" #{@path}less/app.less)
 				end
-			elsif @type == :enterprise
+			elsif @type == :login
 				colors.each do |id, color|
-					File.open(@path + ENTERPRISE_COLORS[id]['file'], 'r+')  do |f|
-						lines = f.readlines
-						group_init = lines.index{|x| x.include? ENTERPRISE_COLORS[id]['group']}
-						return unless group_init
-						group_end = group_init + lines[group_init..-1].index{|x| x.include? '}'}
-						color_line = group_init + lines[group_init..group_end].index{|x| x.split(':')[0].strip ==  ENTERPRISE_COLORS[id]['element']}
-						lines[color_line] = lines[color_line].gsub(/[A-Fa-f0-9]{6}/, color)
-						f.pos = 0
-						f.write lines
-					end
-					@custom_colors[id] = ENTERPRISE_COLORS[id]
+					%x(sed -i.bak "s/@#{id}: #.\\{6\\}/@#{id}: ##{color}/" #{@path}less/app_unsecured.less)
 				end
-
 			end
 		end
+
 	end
 
 	def compile theme
-		if theme.type == :enterprise
-			css_files = ENTERPRISE_CSS
-		else
-			css_files = BASE_THEME_CSS
-		end
 
-		css_files.values.each do |css|
-		 	if css['file'].include? 'base.css'
-		 		res = %x(#{FLEX_SDK}/bin/mxmlc #{theme.path + css['file']} -compiler.library-path #{UTILS_PATH}/degrafa_swc #{FLEX_SDK}/frameworks/libs/flex.swc)
-		 		raise Exception.new "Error compiling #{theme.path + css['file']}: #{res}" unless $? == 0
-		 	else
-		 		res = %x(#{FLEX_SDK}/bin/mxmlc #{theme.path + css['file']})
-		 		raise Exception.new "Error compiling #{theme.path + css['file']}: #{res}" unless $? == 0
-		 	end
-		end
+    if not theme.type == :base
+		  # Copy the root theme files into tmp folder
+		  rootpath = "/tmp/ROOT_THEME"
+		  %x(cp -R #{ROOT_THEME_EXAMPLE_PATH} #{rootpath})
+		  %x(mv #{theme.path} '#{rootpath}/app/theme/#{theme.name}')
+		  if theme.type == :console
+  			%x(cd #{rootpath}; npm install; grunt create_secured_theme --theme=#{theme.name})
+		  else
+  			%x(cd #{rootpath}; npm install; grunt create_unsecured_theme --theme=#{theme.name})
+		  end
+    end
 	end
 
 	def pack theme
-		css_files = ''
-		if theme.type == :enterprise
-			css_files = ENTERPRISE_CSS
-		else
-			css_files = BASE_THEME_CSS
-		end
-
-		#Delete useless files
-		css_files.values.each {|css| %x(rm -f #{theme.path + css['file']})}
-		%x(rm -rf #{theme.path}/assets/)
 
 		#Tar it!
-		%x(cd /tmp/; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz  #{theme.name})
+		if theme.type == :console
+			%x(cd /tmp/ROOT_THEME/build/theme; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz  #{theme.name})
+		elsif theme.type == :login
+			%x(cd /tmp/ROOT_THEME/build/theme; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz #{theme.name} abicloudDefault)
+    elsif theme.type == :base
+      %x(cd /tmp/#{theme.name}; tar cfvz #{Padrino.root}/public/downloads/#{theme.name}.tar.gz abicloudDefault > /tmp/command.txt)
+		end
+
 		raise Exception.new "Error running tar on #{theme.path}" unless $? == 0
 
-		%x(rm -rf /tmp/#{theme.path})
+		%x(rm -rf /tmp/ROOT_THEME) 
+    %x(rm -rf /tmp/{theme.name}) if theme.type == :base
 
 		return "#{theme.name}.tar.gz"
 	end
 
-	def create_base_theme name
-		path = "/tmp/#{name}_base_theme/"
+	def create_login_theme name
+		path = "/tmp/#{name}_login_theme/"
 		
-		raise Exception.new 'Already exists a base theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_base_theme.tar.gz"
+		raise Exception.new 'Already exists a login theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_login_theme.tar.gz"
 		%x(rm -rf #{path})
-		%x(cp -R #{BASE_THEME_EXAMPLE_PATH} #{path})
+		%x(cp -R #{THEME_EXAMPLE_PATH} #{path})
 
-		return Theme.new :base, "#{name}_base_theme", path
+		return Theme.new :login, "#{name}_login_theme", path
 	end
 
-	def create_ent_theme name
-		path = "/tmp/#{name}_theme/"
+	def create_console_theme name
+		path = "/tmp/#{name}_console_theme/"
 
-		raise Exception.new 'Already exists a theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_theme.tar.gz"
+		raise Exception.new 'Already exists a console theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_console_theme.tar.gz"
 		%x(rm -rf #{path})
-		%x(cp -R #{ENT_THEME_EXAMPLE_PATH} #{path})
+		%x(cp -R #{THEME_EXAMPLE_PATH} #{path})
 
-		return Theme.new :enterprise, "#{name}_theme", path
+		return Theme.new :console, "#{name}_console_theme", path
 	end
+
+  def create_base_theme name
+    path = "/tmp/#{name}_base_theme/"
+
+    raise Exception.new 'Already exists a base theme with this name' if File.exist? "#{Padrino.root}/public/downloads/#{name}_base_theme.tar.gz"
+    %x(rm -rf #{path})
+    %x(mkdir -p #{path}/abicloudDefault)
+    %x(cp -R #{BASE_THEME_PATH}/img #{path}/abicloudDefault/img)
+
+    return Theme.new :base, "#{name}_base_theme", path + "abicloudDefault/"
+  end
 
 end
