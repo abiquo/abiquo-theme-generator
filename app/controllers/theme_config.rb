@@ -37,6 +37,13 @@ AbiquoBranding.controllers :theme_config do
       @images = ThemeUtils::LOGIN_THEME_IMAGES.sort
 
       render 'theme_config/create_theme_form.erb'
+
+    elsif params['type'] == 'base'
+      @base = true
+      @colors = {}
+      @images = ThemeUtils::BASE_THEME_IMAGES.sort
+
+      render 'theme_config/create_theme_form.erb'
     end
 
   end
@@ -44,6 +51,7 @@ AbiquoBranding.controllers :theme_config do
   post :create, :map => "/create_theme" do
     #Create a new theme
     begin
+      theme = ThemeUtils.create_base_theme params['theme_name'] if params['type'] == 'base'
       theme = ThemeUtils.create_console_theme params['theme_name'] if params['type'] == 'console'
       theme = ThemeUtils.create_login_theme params['theme_name'] if params['type'] == 'login'
     rescue Exception => e
@@ -55,7 +63,7 @@ AbiquoBranding.controllers :theme_config do
     custom_images = {}
     params.each do |id, content|
       id_image = id.split('.')[0]
-      custom_images[id] = content[:tempfile].read if (ThemeUtils::CONSOLE_THEME_IMAGES[id_image] or ThemeUtils::LOGIN_THEME_IMAGES[id_image])
+      custom_images[id] = content[:tempfile].read if (ThemeUtils::CONSOLE_THEME_IMAGES[id_image] or ThemeUtils::LOGIN_THEME_IMAGES[id_image] or ThemeUtils::BASE_THEME_IMAGES[id_image])
     end
 
     #Only save colors from the list
@@ -72,7 +80,7 @@ AbiquoBranding.controllers :theme_config do
 
     #Compile
     ThemeUtils.compile theme
-    file_name = ThemeUtils.pack theme 
+    @file_name = ThemeUtils.pack theme 
     render 'theme_config/created.erb'
   end
 
