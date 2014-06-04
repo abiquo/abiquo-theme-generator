@@ -1427,7 +1427,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position' ] )
 
                             // And show the tooltip.
                             scope.tt_isOpen = true;
-                            $timeout(function(){hide()},3000)
+                            $timeout(function(){hide();},5000);
                         }
 
                         // Hide the tooltip popup element.

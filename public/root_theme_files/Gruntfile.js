@@ -178,12 +178,14 @@ module.exports = function(grunt) {
             config: {
                 files: [
                     {expand: true, src: ['app/config/client-config.json'], dest: '<%= pkg.buildfolder %>/config/', flatten: true},
-                    {expand: true, src: ['app/lang/*'], dest: '<%= pkg.buildfolder %>/lang/', flatten: true}
+                    {expand: true, src: ['app/lang/*'], dest: '<%= pkg.buildfolder %>/lang/', flatten: true},
+                    {expand: true, src: ['app/VERSION'], dest: '<%= pkg.buildfolder %>/', flatten: true}
                 ]
             },
 	        dev: {
                 files: [
-                    {expand: true, src: ['app/config/client-config_dev.json'], dest: '<%= pkg.buildfolder %>/config/', flatten: true}
+                    {expand: true, src: ['app/config/client-config_dev.json'], dest: '<%= pkg.buildfolder %>/config/', flatten: true},
+                    {expand: true, src: ['app/VERSION'], dest: '<%= pkg.buildfolder %>/', flatten: true}
                 ]
            }
         },
@@ -193,13 +195,14 @@ module.exports = function(grunt) {
                     process: true,
                     data: {
                         title: 'Abiquo Prod',
-                        favicon: 'theme/<%= grunt.option(\"theme\") %>/img/favicon.ico',
+                        favicon: 'theme/<%= grunt.option(\"theme\") || \"abicloudDefault\" %>/img/favicon.ico',
                         clientVersion: '<%= gitcommit.hash %>'
                     }
                 },
                 files: {
                     '<%= pkg.buildfolder %>/index.html': ['app/index.html'],
-                    '<%= pkg.buildfolder %>/config/client-config.json': ['app/config/client-config.json']
+                    '<%= pkg.buildfolder %>/config/client-config.json': ['app/config/client-config.json'],
+                    '<%= pkg.buildfolder %>/VERSION': ['app/VERSION']
                 }
             },
             dev: {
@@ -210,7 +213,8 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    '<%= pkg.buildfolder %>/config/client-config_dev.json': ['app/config/client-config_dev.json']
+                    '<%= pkg.buildfolder %>/config/client-config_dev.json': ['app/config/client-config_dev.json'],
+                    '<%= pkg.buildfolder %>/VERSION': ['app/VERSION']
                 }
             }
         },

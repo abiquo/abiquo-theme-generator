@@ -122,11 +122,11 @@
     }
     &.needsync {
         border: none;
-        background: @yellow;
+        background: #325372;
         &:active {
-            background: darken(@yellow, 20%);
+            background: darken(#325372, 20%);
             strong {
-                color: desaturate(@yellow, 60%);
+                color: desaturate(#325372, 60%);
             }
         }
     }
@@ -149,30 +149,26 @@
 
 
 .btn-cross {
+    margin:0px 10px 0;
     float:right;
-    margin:2px 10px 0;
-    background:url(../../abicloudDefault/img/btn-sprite-top.png) no-repeat -288px -2px;
     display:inline-block;
-    vertical-align:top;
-    width:13px;
-    height:14px;
     overflow:hidden;
     text-decoration:none;
-    text-indent:-9999px;
     outline:none;
     &:hover{
         opacity: 0.8;
+        text-decoration: none;
     }
     &:active{
         opacity: 0.6;
+        text-decoration: none;
     }
 }
 
 .ab-info{
     display:inline-block;
-    color: #333333;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 12px;
     outline:none;
 
     &:hover{
@@ -461,6 +457,10 @@ label[class="radio inline ng-binding"] span {
         position: relative;
     }
 
+    input[type=checkbox]:disabled + label span {
+        background-color: #CCCCCC;
+    }
+
     input[type=checkbox]:checked + label span:after {
         content: "";
         width: 16px;
@@ -509,11 +509,16 @@ label[class="radio inline ng-binding"] span {
             margin:0;
             padding:7px 0;
             .border-radius(0);
-            background: #FFF;
+            background: lighten(@baseColor, 7%);
             border: none;
+
             .ab-info{
+                color: #FFF;
                 float:left;
                 margin:0 10px;
+            }
+            .btn-cross {
+                color: #FFF;
             }
             h3{
                 text-align:center;
@@ -522,11 +527,10 @@ label[class="radio inline ng-binding"] span {
                 font-size:13px;
                 line-height:16px;
                 font-weight:bold;
-                color:#666;
-                margin:0;
+                color: #FFF;
+                margin-top: 4px;
                 padding:0;
             }
-
         }
 
         .modal-body {
@@ -567,7 +571,7 @@ label[class="radio inline ng-binding"] span {
         }
     }
 
-    .modal-scroller-mix(@height: auto, @maxheight: 360px) {
+    .modal-scroller-mix(@height: auto, @maxheight: 390px) {
         overflow: hidden;
         overflow-y: auto;
         height: @height;
@@ -664,21 +668,21 @@ label[class="radio inline ng-binding"] span {
         &.needsync {
             &.small-fixed {
                 .small-fixed-toggle {
-                    background: @yellow;
+                    background: #325372;
                     border-left: none;
                     &:active {
-                        background: darken(@yellow, 20%);
+                        background: darken(#325372, 20%);
                         i {
-                            color: desaturate(@yellow, 60%);
+                            color: desaturate(#325372, 60%);
                         }
                     }
                 }
             }
             &.open {
                 .small-fixed-toggle {
-                    background: darken(@yellow, 20%);
+                    background: darken(#325372, 20%);
                     i {
-                        color: desaturate(@yellow, 60%);
+                        color: desaturate(#325372, 60%);
                     }
                 }
             }
@@ -1021,9 +1025,11 @@ label[class="radio inline ng-binding"] span {
 
 html, body {
     height: 100%;
-    min-width: 1000px;
-    min-height: 680px;
-    #font > .sans-serif(12px, normal, 1.25em);
+    min-width: 1210px;
+    min-height: 690px;
+    font-size: 12px;
+
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     * {
         .box-sizing(border-box);
     }
@@ -1058,8 +1064,8 @@ a {
 }
 
 body.loadingCursor,
-body.loadingCursor input {
-    cursor: wait;
+body.loadingCursor * {
+    cursor: wait !important;
     //cursor: url(img/loadingCursor.gif), move;
 }
 
@@ -1082,9 +1088,20 @@ h6 {
   width: -webkit-calc(@expression);
 }
 
+.calc-width-important(@expression) {
+  width: calc(@expression) !important;
+  width: -webkit-calc(@expression) !important;
+}
+
 .calc-height(@expression) {
   height: calc(@expression);
   height: -webkit-calc(@expression);
+}
+
+.flex-item-resize {
+  width: calc(~"100% - 208px");
+  width: -webkit-calc(~"100% - 208px");
+  float: right;
 }
 
 .flex-item {
@@ -1222,6 +1239,12 @@ h6 {
                 }
             }
         }
+        .powered-by {
+            position: fixed;
+            bottom: 2px;
+            right: 4px;
+            font-size: 12px;
+        }
     }
     .main-container {
         .square(100%);
@@ -1270,7 +1293,6 @@ h6 {
             background-color: #333;
             width: 100%;
             height: 20px;
-            padding-top:2px;
 
             a, div {
                 float: right;
@@ -1344,7 +1366,7 @@ h6 {
                     height: 100%;
                     z-index: 2;
                     background-color: #FFF;
-                    padding: 40px 20px 20px 20px;
+                    padding: 40px 8px 17px 8px;
 
                     header {
                         .module-header-mix();
@@ -1498,7 +1520,8 @@ h6 {
                     .transition(margin-left 0.1s linear);
                     .header-form-list();
                     &.not-displayed {
-                      margin-left: -200px;
+                        margin-left: -200px;
+                        width: 0px !important; /* To ignore js resize width setted by uDivider */
                     }
                 }
 
@@ -1533,13 +1556,14 @@ h6 {
                     display: inline-block;
                     position: relative;
                     height: 100%;
-                    padding: 0 20px 60px 20px;
+                    padding: 0px 0px 40px 0px;
                     z-index: 2;
-                    .flex-item;
+                    .calc-width(~"100% - 202px");
+                    float: right;
 
                     &.no-padding {
-                        .calc-width(~"100% - 22px");
-                        padding: 0;
+                        .calc-width-important(~"100% - 22px"); /* To ignore js resize width setted by uDivider */
+                        padding: 0px;
                         .virtual-appliances-container {
                             .virtual-appliances-list-container {
                                 header {
@@ -1550,7 +1574,7 @@ h6 {
 
                                 .header-form-list();
                                 width: 200px;
-                                padding-bottom: 0;
+                                padding-bottom: 0px;
                                 .ab-search-form {
                                     padding: 0 10px;
                                 }
@@ -1630,29 +1654,29 @@ h6 {
                                 }
 
                                 li.needsync a:after{
-                                    background: @yellow;
+                                    background: #325372;
                                 }
 
                                 li.loading a:after{
                                     background: transparent;
                                 }
-
+                            }
+                            &.full-width {
+                                width:100% !important; /* To ignore js resize width setted by uDivider */
+                                height: 100%;
                             }
                         }
 
                         .virtual-appliances-details {
-                            .flex-item;
+                            .flex-item-resize;
                             .clearfix();
                             height: 100%;
                             position: relative;
-                            padding: 0px 18px 20px 20px;
                             .virtual-machines-list-container {
                                 position: relative;
                                 height: 100%;
                                 z-index: 1;
-                                width: 302px;
-                                margin-right: 20px;
-                                padding-bottom: 4px;
+                                width: 314px;
                                 >header {
                                     .module-header-mix();
                                 }
@@ -1671,7 +1695,7 @@ h6 {
                                 }
                                 .template-library-options {
                                     position:relative;
-                                    padding-top: 2*@highHeaderHeight + 7;
+                                    padding-top: 2*@highHeaderHeight + 18;
                                     height: 100%;
                                     .header-filter {
                                         position: absolute;
@@ -1774,24 +1798,33 @@ h6 {
                                                 margin-top: 0px;
                                             }
                                         }
+                                        p {
+                                            padding-left: 5px;
+                                            padding-right: 5px;
+                                        }
                                     }
                                     .create-layer-dropdown {
                                         .ab-add1 {
                                             margin-right: 0px;
                                         }
                                     }
-                                        .btn-link {
-                                            padding-left: 0px;
-                                            padding-right: 0px;
-                                            color: #999;
-                                            &:hover {
-                                                color: #666;
-                                                text-decoration: none;
-                                            }
-                                            &:active {
-                                                color: #333;
-                                            }
+
+                                    .btn-link {
+                                        padding-left: 0px;
+                                        padding-right: 0px;
+                                        color: #999;
+                                        &:hover {
+                                            color: #666;
+                                            text-decoration: none;
                                         }
+                                        &:active {
+                                            color: #333;
+                                        }
+                                    }
+
+                                    .more-deploy-info {
+                                        vertical-align: top;
+                                    }
 
                                     .btn-special1 {
                                         vertical-align: top;
@@ -1816,223 +1849,200 @@ h6 {
                                     }
                                 }
 
-                                .virtual-machines-grid {
-                                    position: absolute;
-                                    top: 0;
-                                    height: 100%;
-                                    width: 100%;
-                                    padding: 0;
+                                .virtual-machines-container-list {
                                     padding-top: @highHeaderHeight*2;
-                                    padding-bottom: @consoleHeight;
-                                    .adaptative-grid {
-                                        padding-top: 0px;
-                                        padding-right: 1px;
-                                        border: 1px solid #ccc;
-                                    }
-                                }
-
-                                .virtual-machines-list {
-                                    position: absolute;
-                                    top: 0;
-                                    height: 100%;
                                     width: 100%;
-                                    padding: 0;
-                                    background-color: lighten(@grayLighter, 10%);
-                                    padding-top: @highHeaderHeight*2;
-                                    padding-bottom: @consoleHeight;
-                                    &.disabled {
-                                        pointer-events:none;
-                                    }
+                                    .calc-height(~"100% - @{consoleHeightView}px");
 
-                                    .list-scroller {
-                                        overflow: hidden;
-                                        overflow-y:auto;
-                                        position: relative;
-                                        .square(100%);
-                                        border: 1px solid #CCC;
-                                        > ul {
-                                            > li {
-                                                border-bottom: 1px solid #F2F2F2;
-                                            }
+                                    .virtual-machines-grid {
+                                        height: 100%;
+                                        width: 100%;
+                                        .adaptative-grid {
+                                          padding-top: 0px;
+                                          padding-right: 1px;
+                                          border: 1px solid #ccc;
                                         }
-                                        .virtual-machine-layers-list {
+                                    }
+
+                                    .virtual-machines-list {
+                                        width: 100%;
+                                        height: 100%;
+                                        padding: 0;
+                                        background-color: lighten(@grayLighter, 10%);
+                                        &.disabled {
+                                          pointer-events:none;
+                                        }
+
+                                        .list-scroller {
+                                            overflow: hidden;
+                                            overflow-y:auto;
                                             position: relative;
-                                            .virtual-machine-layer-container {
-                                                .clearfix();
-                                                background-color: #FFF;
-                                                padding: 0px 15px;
-                                                padding-bottom: 15px;
-                                                &.ui-state-highlight {
+                                            .square(100%);
+                                            border: 1px solid #CCC;
+                                            > ul {
+                                                > li {
+                                                    border-bottom: 1px solid #F2F2F2;
+                                                }
+                                            }
+                                            .virtual-machine-layers-list {
+                                                position: relative;
+                                                .virtual-machine-layer-container {
+                                                    .clearfix();
+                                                    background-color: #FFF;
+                                                    padding: 0px 15px;
+                                                    padding-bottom: 15px;
+                                                    &.ui-state-highlight {
+                                                        .layer-virtual-machines-list-container {
+                                                            .box-shadow(inset 0px 0px 1px 1px darken(desaturate(@baseColor, 10%), 20%));
+                                                            > li {
+
+                                                            }
+                                                        }
+                                                    }
+                                                    >header {
+                                                        .clearfix();
+                                                        padding: 10px 0px;
+                                                        h5 {
+                                                            float: left;
+                                                            font-weight: bold;
+                                                            font-size: 10px;
+                                                            a {
+                                                                color: #666;
+                                                            }
+                                                        }
+                                                        > a {
+                                                            float:right;
+                                                            margin: 0;
+                                                            margin-right: 5px;
+                                                            margin-top: 1px;
+                                                            font-weight: bold;
+                                                            font-size: 10px;
+                                                        }
+                                                    }
                                                     .layer-virtual-machines-list-container {
-                                                        .box-shadow(inset 0px 0px 1px 1px darken(desaturate(@baseColor, 10%), 20%));
+                                                        padding: 0px;
+                                                        .box-shadow(inset 0px 0px 1px 1px rgba(0,0,0,.2));
+                                                        background: #F0F0F0;
+                                                        min-height: 100px;
                                                         > li {
-                                                            
-                                                        }
-                                                    }
-                                                }
-                                                >header {
-                                                    .clearfix();
-                                                    padding: 10px 0px;
-                                                    h5 {
-                                                        float: left;
-                                                        font-weight: bold;
-                                                        font-size: 10px;
-                                                        a {
-                                                            color: #666;
-                                                        }
-                                                    }
-                                                    > a {
-                                                        float:right;
-                                                        margin: 0;
-                                                        margin-right: 5px;
-                                                        margin-top: 1px;
-                                                        font-weight: bold;
-                                                        font-size: 10px;
-                                                    }
-                                                }
-                                                .layer-virtual-machines-list-container {
-                                                    padding: 0px;
-                                                    .box-shadow(inset 0px 0px 1px 1px rgba(0,0,0,.2));
-                                                    background: #F0F0F0;
-                                                    min-height: 100px;
-                                                    > li {
-                                                        position: relative;
-                                                        border-right: 1px dotted #CCC;
-                                                        > div {
-                                                            position: absolute;
-                                                            .square(100%);
-                                                            >i {
+                                                            position: relative;
+                                                            border-right: 1px dotted #CCC;
+                                                            > div {
                                                                 position: absolute;
-                                                                right: 5px;
-                                                                bottom: 5px;
+                                                                .square(100%);
+                                                                >i {
+                                                                    position: absolute;
+                                                                    right: 5px;
+                                                                    bottom: 5px;
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
                                             }
-                                        }
 
-                                        .virtual-machine-renderer-container {
+                                            .virtual-machine-renderer-container {
 
-                                            height: 112px;
+                                                height: 112px;
 
-                                            .actions-container {
-                                                width: 100px;
-                                                top: 0;
-                                                right: 0;
+                                                .virtual-machine-status-bar {
+                                                    width: 100%;
+                                                    height: 16px;
 
-                                                button {
-                                                    background-color: #FFFFFF;
-                                                    width: 24px;
-                                                    height: 24px;
-                                                    border-style: none;
-                                                    margin: 0px 0px 0px -3px;
-                                                    padding: 0px;
-                                                    outline: none;
+                                                    .virtual-machine-status-bar-separator {
+                                                        position: absolute;
+                                                        bottom: 0px;
+                                                        border-left: 1px solid #CCCCCC;
+                                                        height: inherit;
 
-                                                    &:hover {
-                                                        color: @baseColor;
+                                                        &.separator-index-1 {
+                                                            left: 30px;
+                                                        }
+                                                        &.separator-index-2 {
+                                                            left: 60px;
+                                                        }
+                                                    }
+
+                                                    a {
+                                                        text-decoration: none;
+                                                    }
+
+                                                    .icon-warning-sign {
+                                                        position: absolute;
+                                                        bottom: 2px;
+                                                        left: 9px;
+
+                                                        &.disabled {
+                                                            color: #000000;
+                                                            opacity: 0.1;
+                                                        }
+                                                    }
+
+                                                    .icon-hdd {
+                                                        position:absolute;
+                                                        bottom: 2px;
+                                                        left: 40px;
+
+                                                        &.disabled {
+                                                            color: #000000;
+                                                            opacity: 0.1;
+                                                        }
+                                                    }
+
+                                                    .chef-enabled {
+                                                        bottom: 1px;
+                                                        left: 67px;
+
+                                                        &.disabled {
+                                                            opacity: 0.1;
+                                                        }
                                                     }
                                                 }
                                             }
 
-                                            .virtual-machine-status-bar {
-                                                width: 100%;
-                                                height: 16px;
-
-                                                .virtual-machine-status-bar-separator {
-                                                    position: absolute;
-                                                    bottom: 0px;
-                                                    border-left: 1px solid #CCCCCC;
-                                                    height: inherit;
-
-                                                    &.separator-index-1 {
-                                                        left: 30px;
-                                                    }
-                                                    &.separator-index-2 {
-                                                        left: 60px;
+                                            .virtual-machine-categories-list {
+                                                min-height: 120px;
+                                                height:100%;
+                                                &.ui-state-highlight {
+                                                    .virtual-machine-category-container {
+                                                        &:nth-child(even),
+                                                        &:nth-child(odd) {
+                                                            // background: lighten(desaturate(@baseColor, 10%), 20%);
+                                                        }
                                                     }
                                                 }
-
-                                                a {
-                                                    text-decoration: none;
-                                                }
-
-                                                .icon-warning-sign {
-                                                    position: absolute;
-                                                    bottom: 2px;
-                                                    left: 9px;
-
-                                                    &.disabled {
-                                                      color: #000000;
-                                                      opacity: 0.1;
-                                                    }
-                                                }
-
-                                                .icon-hdd {
-                                                    position:absolute;
-                                                    bottom: 2px;
-                                                    left: 40px;
-
-                                                    &.disabled {
-                                                      color: #000000;
-                                                      opacity: 0.1;
-                                                    }
-                                                }
-
-                                                .chef-enabled {
-                                                    bottom: 1px;
-                                                    left: 67px;
-
-                                                    &.disabled {
-                                                        opacity: 0.1;
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        .virtual-machine-categories-list {
-                                            position: relative;
-                                            height: 100%;
-                                            &.ui-state-highlight {
                                                 .virtual-machine-category-container {
-                                                    &:nth-child(even),
-                                                    &:nth-child(odd) {
-                                                        // background: lighten(desaturate(@baseColor, 10%), 20%);
+                                                    padding: 10px 15px;
+                                                    >header {
+                                                        .clearfix();
+                                                        padding:0px;
+                                                        h5 {
+                                                            margin: 0;
+                                                            color: #666;
+                                                            font-weight: bold;
+                                                            font-size: 10px;
+                                                        }
+                                                        > a {
+                                                            float: right;
+                                                        }
                                                     }
-                                                }
-                                            }
-                                            .virtual-machine-category-container {
-                                                padding: 10px 15px;
-                                                >header {
-                                                    .clearfix();
-                                                    padding:0px;
-                                                    h5 {
-                                                        margin: 0;
-                                                        color: #666;
-                                                        font-weight: bold;
-                                                        font-size: 10px;
-                                                    }
-                                                    > a {
-                                                        float: right;
-                                                    }
-                                                }
-                                                .category-virtual-machine-container {
-                                                    > li {
-                                                        > div {
-                                                            position: absolute;
-                                                            .square(100%);
-                                                            >i {
-                                                                color: @baseColor;
+                                                    .category-virtual-machine-container {
+                                                        > li {
+                                                            > div {
                                                                 position: absolute;
-                                                                right: 5px;
-                                                                bottom: 5px;
+                                                                .square(100%);
+                                                                >i {
+                                                                    color: @baseColor;
+                                                                    position: absolute;
+                                                                    right: 5px;
+                                                                    bottom: 5px;
+                                                                }
                                                             }
                                                         }
                                                     }
+                                                    &:nth-child(even) {}
+                                                    &:nth-child(odd) {}
                                                 }
-                                                &:nth-child(even) {}
-                                                &:nth-child(odd) {}
                                             }
                                         }
                                     }
@@ -2040,7 +2050,8 @@ h6 {
 
                                 .virtual-machine-detail {
                                     .detail-console(@consoleHeight);
-                                    left: 0px;
+                                    .container-bordered;
+                                    position: relative;
                                     .virtual-machine-detail-no-selected {
                                         h1 {
                                             text-align: center;
@@ -2151,6 +2162,8 @@ h6 {
                                 }
 
                                 .grid-w-pagination {
+                                    .calc-height(~'100% - 20px');
+
                                     .adaptative-grid {
                                         top: 0px;
                                         bottom: 0px;
@@ -2218,7 +2231,7 @@ h6 {
                                         left: 0px;
                                         //overriding some properties of .ab-holder
                                         .ab-holder {
-
+                                            background-color: #FFFFFF;
                                             .ab-inner {
                                                 padding: 0px;
                                             }
@@ -2348,7 +2361,7 @@ h6 {
                     .header-form-list();
 
                     .dropdown-create-datacenter {
-                        right: -35px;
+                        right: -68px;
                         left: auto;
                     }
                 }
@@ -2359,10 +2372,7 @@ h6 {
                     .flex-item;
                     background-color: @white;
                     padding-top: @highHeaderHeight;
-                    padding-bottom: 20px;
                     .panel-list {
-                        padding-left: 20px;
-                        padding-right: 20px;
                         .map-container {
                             position: relative;
                             .square(100%);
@@ -2427,7 +2437,8 @@ h6 {
                                 .clearfix();
                                 height: 100%;
                                 position: relative;
-                                .flex-item320;
+                                float: right;
+                                .calc-width(~"100% - 308px");
                                 padding-top: @highHeaderHeight;
 
                                 >header {
@@ -2436,11 +2447,14 @@ h6 {
                                     position: absolute;
                                 }
                                 .vm-grid {
-                                    position: absolute;
-                                    padding-bottom: @consoleHeight;
+                                    .calc-height(~"100% - @{consoleHeightView}px");
+                                    .adaptative-grid {
+                                      padding: 0px;
+                                    }
                                 }
                                 .physical-machine-detail {
                                     .detail-console(@consoleHeight);
+                                    position: relative;
                                     border-top: 1px solid #ccc;
                                     .physical-machine-details-state {
                                         text-align: center;
@@ -2455,11 +2469,17 @@ h6 {
                                         height: 100%;
                                     }
                                     .virtual-machine-detail-no-selected {
-                                      h1 {
-                                        text-align: center;
-                                        margin-top: 80px;
-                                        font: bold 15px/30px sans-serif;
-                                      }
+                                        h1 {
+                                            text-align: center;
+                                            margin-top: 80px;
+                                            font: bold 15px/30px sans-serif;
+                                        }
+                                    }
+                                    .physical-machine-details-general {
+                                        margin-left: 11px;
+                                    }
+                                    .physical-machine-details-description {
+                                        margin-left: 11px;
                                     }
                                 }
                                 .physical-machine-detail-no-selected {
@@ -2477,6 +2497,7 @@ h6 {
                             height: 85%;
                             .backupconfiguration-container {
                                 .square(100%);
+                                padding-bottom: 8px;
                                 > a {
                                     display: block;
                                     text-align: right;
@@ -2577,15 +2598,17 @@ h6 {
                                         padding-bottom: 0px;
                                     }
                                 }
-
                             }
 
                             .datacenter-network-detail {
                                 .header-grid(@paddingBottom:@paginatorHeight);
-                                .flex-item220;
+                                .calc-width(~"100% - 208px");
+                                float: right;
 
-                                .datacenter-network-detail-link-availableips {
-                                    margin-right: 10px;
+                                .actions-container {
+                                    a {
+                                        margin-right: 10px;
+                                    }
                                 }
                             }
 
@@ -2650,13 +2673,62 @@ h6 {
                             height: 100%;
                             padding-top: 40px;
                             float: right;
-                            .flex-item220;
+                            .calc-width(~"100 - 208px");
                             header {
                                 top: 0;
                             }
                             .grid-w-pagination {
                                 .adaptative-grid {
                                     padding-top: 0px;
+                                }
+                            }
+
+                            .volume-container-list {
+                                .calc-height(~"100% - @{consoleHeightView}px");
+                            }
+
+                            .volume-detail {
+                                .detail-console(@consoleHeight);
+                                .container-bordered;
+                                position: relative;
+                                .volume-detail-no-selected {
+                                  h1 {
+                                    text-align: center;
+                                    margin-top: 80px;
+                                    font: bold 15px/30px sans-serif;
+                                  }
+                                }
+                                .volume-details-general {
+                                    ul {
+                                        padding: 0 10px;
+                                        .clearfix();
+                                        li {
+                                            span {
+                                                color: @grayDark;
+                                                &:first-child {
+                                                    color: @grayLight;
+                                                }
+                                            }
+                                            &:first-child {
+                                                font-size:15px;
+                                                line-height:18px;
+                                                font-weight:bold;
+                                                padding-top: 10px;
+                                                padding-right: 5px;
+                                                padding-bottom: 15px;
+                                                padding-left: 5px;
+                                                color:#333;
+                                            }
+                                        }
+                                    }
+                                }
+                                .volume-details-initiator {
+                                    h5 {
+                                        font-size:12px;
+                                        line-height:18px;
+                                        font-weight:bold;
+                                        color:#333;
+                                    }
                                 }
                             }
                         }
@@ -2669,7 +2741,7 @@ h6 {
 
                         .global-alloationrules-container{
                             height: 100%;
-                            width: 49%;
+                            .calc-width(~"50% - 4px");
                             position:relative;
                             float: left;
                             padding-top: @highHeaderHeight;
@@ -2694,7 +2766,7 @@ h6 {
 
                         .particular-alloationrules-container {
                             height: 100%;
-                            width: 49%;
+                            .calc-width(~"50% - 4px");
                             position:relative;
                             float: right;
                             padding-top: @highHeaderHeight;
@@ -2748,12 +2820,10 @@ h6 {
                     height: 100%;
                     .flex-item;
                     background-color: @white;
-                    padding: 0px 20px;
 
                     .apps-library-category-list-container {
                         .header-form-list(@bgColor:@white);
-                        padding-right: 20px;
-                        padding-bottom: 9px;
+                        padding-bottom: 0px;
                         header {
                             padding-right: 20px;
                             h5 {
@@ -2763,7 +2833,6 @@ h6 {
                         .ab-search-form {
                             padding: 0;
                             padding-bottom: 10px;
-                            padding-right: 20px;
                         }
                         border-top: 1px solid #CCC;
                         .ab-topiclist {
@@ -2823,6 +2892,10 @@ h6 {
                             width: 100%;
                             .calc-height(~"100% - 158px");
                             border: 1px solid #ccc;
+                            .machine-status {
+                                top: 26px;
+                                left: 30px;
+                            }
                             .user-badge {
                                 left: 0;
                                 top: 100%;
@@ -2832,13 +2905,13 @@ h6 {
                             }
 
                             &.no-instances {
-                              .calc-height(~"100% - 10px");
+                                height: 100%;
                             }
 
                             &.expanded-height {
-                               .calc-height(~"100% - 50px");
+                               .calc-height(~"100% - 41px");
                                 &.no-instances {
-                                  .calc-height(~"100% - 10px");
+                                    heigth: 100%;
                                 }
                             }
                         }
@@ -2846,7 +2919,7 @@ h6 {
                         .apps-library-instances {
                             position: relative;
                             padding-top: @highHeaderHeight;
-                            .size(149px, 100%);
+                            .size(158px, 100%);
                             border-left: 1px solid #ccc;
                             border-right: 1px solid #ccc;
                             border-bottom: 1px solid #ccc;
@@ -2857,7 +2930,19 @@ h6 {
                                 left: 10px;
                                 font-size: 13px;
                             }
-
+                            .user-badge {
+                                left: 0;
+                                top: 100%;
+                                margin-top: -32px;
+                                background-image: url(../../abicloudDefault/img/vm_user_icon_bottom.png);
+                                background-position: 0% 100%;
+                            }
+                            .chef-enabled {
+                                bottom: 28px;
+                            }
+                            .template-failed{
+                                right: 25px;
+                            }
                             .collapse-button {
                                 position: absolute;
                                 top:  14px;
@@ -2886,13 +2971,10 @@ h6 {
                     .flex-item;
                     background-color: @white;
                     padding-top: @highHeaderHeight;
-                    padding-bottom: 20px;
                     &.expanded{
                       width: 100%;
                     }
                     .panel-list {
-                        padding-left: 20px;
-                        padding-right: 20px;
                         .enterprises-users-container {
                             padding-top: @highHeaderHeight;
                             position: relative;
@@ -2918,10 +3000,11 @@ h6 {
                                                 border-bottom: 1px solid #d5d5d5;
                                                 border-right: 1px solid #ccc;
                                                 float: left;
-                                                width: 33.334%;
+                                                width: 250px;
                                                 position: relative;
                                                 height: 120px;
                                                 padding: 15px;
+                                                overflow-y: hidden;
 
                                                 .ab-visual-block{
                                                     width:100%;
@@ -2982,11 +3065,13 @@ h6 {
                                                     }
                                                 }
                                                 .user-card-row{
-                                                    padding:3px 0;
+                                                    position: absolute;
+                                                    bottom: 10px;
+                                                    left: 14px;
                                                     color:#a39f91;
                                                     font-size:11px;
                                                     line-height:14px;
-                                                    a{
+                                                    a {
                                                         color:@baseColor;
                                                     }
                                                 }
@@ -3002,17 +3087,20 @@ h6 {
                             .roles-list-container {
                                 .header-form-list(@bgColor: @white);
                                 padding-bottom: 0px;
+                                width: 300px;
                                 .ab-topiclist {
                                     border:1px solid @grayLighter;
                                     li {
                                         border-bottom: 1px solid @grayLighter;
                                     }
                                 }
+
                             }
                             .roles-detail{
                                 position: relative;
                                 height: 100%;
-                                .flex-item220;
+                                float: right;
+                                .calc-width(~"100% - 308px");
                                 padding-top: @highHeaderHeight;
                                 header {
                                     .module-header-mix();
@@ -3022,13 +3110,24 @@ h6 {
                                 .privileges-container {
                                     .grouped-options-list();
                                     .square(100%);
-                                    height: 85%;
+                                    .calc-height(~"100% - 141px");
                                     position: relative;
+                                }
+
+                                .privileges-container-actions {
+                                    height: 31px;
+                                    .container-bordered;
+                                    border-top-style: none;
+                                    .button-save {
+                                        float: right;
+                                        margin-top: 3px;
+                                        margin-right: 3px;
+                                    }
                                 }
 
                                 .privilege-detail {
                                     .detail-console(@consoleHeight);
-                                    height: 14%;
+                                    height: 110px;
                                     left: 0px;
                                     padding-left: 10px;
                                     padding-right: 10px;
@@ -3065,7 +3164,8 @@ h6 {
                             .enterprises-scopes-details-container {
                                 position: relative;
                                 height: 100%;
-                                .flex-item220;
+                                float: right;
+                                .calc-width(~"100% - 200px");
                                 .enterprises-enterprises-list-container {
                                     .header-drag-list(solid, transparent, 50%, 100%, @paginatorHeight);
                                     position: relative;
@@ -3097,8 +3197,6 @@ h6 {
             .pricing-container {
                 .square(100%);
                 float: none;
-                padding: 0px 20px 20px;
-                padding-top: 0px;
                 background: #FFF;
 
                 .navbar {
@@ -3141,7 +3239,8 @@ h6 {
                     .enterprises-association-list-container {
                         height: 100%;
                         position: relative;
-                        .flex-item220;
+                        float:right;
+                        .calc-width(~"100% - 200px");
 
                         .enterprises-without-pricing-model-container {
                             .size(100%, 50%);
@@ -3213,8 +3312,6 @@ h6 {
             .events-container {
                 .header-grid();
                 .square(100%);
-                float: none;
-                padding: 40px 20px 20px;
                 > header {
                     position: absolute;
                     left: 0;
@@ -3233,13 +3330,12 @@ h6 {
                     }
                 }
                 .event-detail {
-                    padding-left:20px;
-                    padding-right:20px;
+                    .detail-console(@consoleHeight);
+                    .container-bordered;
                     position: relative;
                     .event-detail-container {
-                        .detail-console(@consoleHeight);
-                        left: 0px;
                     //overriding some properties of .ab-holder
+                        height: 100%;
                         .ab-holder {
                             .ab-inner {
                                 padding: 0;
@@ -3273,19 +3369,18 @@ h6 {
                         .event-detail-no-selected {
                             h1 {
                                 text-align: center;
-                                margin-top: 80px;
+                                padding-top: 65px;
                                 font: bold 15px/30px sans-serif;
                             }
                         }
                     }
                 }
-                .adaptative-grid {
-                    padding-top: 0px;
-                    padding-bottom: @consoleHeight + @paginatorHeight;
+
+                .grid-w-pagination {
                     background-color: #FFF;
+                    .calc-height(~"100% - @{consoleHeightView}px");
                 }
                 .pagination {
-                    bottom: @consoleHeight;
                     &.pagination-mini {
                         background: #FFF;
                         border-bottom: 1px solid #ccc;
@@ -3313,9 +3408,6 @@ h6 {
                     .flex-item;
 
                     >div {
-                        padding-left: 20px;
-                        padding-right: 20px;
-
                         .configuration-details-edit-button {
                             float:right;
                             padding-top: 25px;
@@ -3525,6 +3617,10 @@ h6 {
             background:url(../../abicloudDefault/img/btn-search.png) no-repeat;
             .square(16px);
             padding:0;
+            cursor: pointer;
+            cursor: hand;
+            border-style: none;
+            outline:none;
         }
         input[type="search"]{
             width: 100%;
@@ -3729,6 +3825,29 @@ h6 {
     }
 }
 
+.actions-container-renderer {
+    float: right;
+    text-align: right;
+    position: absolute;
+    width: 100px;
+    top: 0;
+    right: 0;
+
+    button {
+        background-color: #FFFFFF;
+        width: 24px;
+        height: 24px;
+        border-style: none;
+        margin: 0px 0px 0px -3px;
+        padding: 0px;
+        outline: none;
+
+        &:hover {
+            color: @baseColor;
+        }
+    }
+}
+
 .machine-status {
     background: url(../../abicloudDefault/img/spinner.gif);
     background-repeat:no-repeat;
@@ -3831,7 +3950,7 @@ button {
 .abg-button-style( @bottomLeft:2px, @topLeft:2px, @topRight:2px, @bottomRight:2px){
     border: none;
 
-    margin-left: -2px;
+    margin-left: -3px;
     text-align: center;
     display: inline-block;
     width: 27px;
@@ -3854,7 +3973,6 @@ button {
     border-bottom-right-radius: @bottomRight;
 
     font-size: 14px;
-    font-family: arial;
     padding-top: 1px;
     font-weight: bolder;
 
@@ -3910,8 +4028,8 @@ button {
 
 .ui-resizable {
     float: left;
-    .size(100%, 200px);
-    min-width: 200px;
+    .size(100%, @resizableLeftMenuWidth - @resizableDividerSize );
+    min-width: @resizableLeftMenuWidth - @resizableDividerSize;
 }
 
 .panel-list {
@@ -3954,6 +4072,10 @@ button {
     .ngFooterPanel {
         width: 100%;
         z-index: 0;
+    }
+
+    .edit-button {
+        outline: none;
     }
 }
 
@@ -4170,9 +4292,8 @@ button {
     margin:0;
     padding:0;
     list-style:none;
-    font-size:13px;
+    font-size:12px;
     line-height:16px;
-    font-weight:bold;
     overflow: auto;
     li {
         width:100%;
@@ -4327,6 +4448,13 @@ button {
                 a {
                     &:after {
                         background:#393;
+                    }
+                }
+            }
+            .disabled_by_ha {
+                a {
+                    &:after {
+                      background:#717171;
                     }
                 }
             }
@@ -4619,7 +4747,6 @@ button {
 .navbar {
     &.primary {
         &.infrastructure-navbar, &.enterprises-navbar {
-            padding: 0px 20px;
             .navbar-inner {
                 background: transparent;
                 .box-shadow(none);
@@ -4654,11 +4781,14 @@ button {
             h5 {
                 top: 13px;
                 position: relative;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: 13px;
                 font-weight: bold;
             }
         }
+    }
+
+    .invalid {
+        color: #FF0000 !important;
     }
 }
 
@@ -4808,7 +4938,7 @@ input[type="email"].ng-invalid {
         }
     }
     .network-form-content {
-        .modal-scroller-mix();
+        .modal-scroller-mix(auto, 500px);
     }
 
     .purchase-nic-form-content {
@@ -5087,13 +5217,13 @@ input[type="email"].ng-invalid {
             .modal-scroller-mix();
         }
         .physicalmachine-form-datastores-container {
-          .refresh-button-container{
-            text-align: right;
-          }
-          .adaptative-grid {
-              width: 600px;
-              height: 360px;
-          }
+            .refresh-button-container{
+              text-align: right;
+            }
+            .adaptative-grid {
+                width: 750px;
+                height: 360px;
+            }
         }
         .physicalmachine-form-retrieve-vm-container {
             padding-left: 20px;
@@ -5108,9 +5238,10 @@ input[type="email"].ng-invalid {
             }
         }
         .virtualmachine-form-generalinfo-container {
-            .centered-form-content-mix(10px);
-            .modal-scroller-mix(auto, 500px);
             padding: 0;
+            .modal-form-container {
+                overflow-y: hidden;
+            }
         }
         .virtualmachine-form-network-container {
             position: relative;
@@ -5173,6 +5304,9 @@ input[type="email"].ng-invalid {
                             position: absolute;
                               border-bottom: 1px solid #CCC;
                         }
+                        &.ips-list-expanded {
+                            height: 100%;
+                        }
                         .ab-topiclist {
                             height: 100%;
                             width: 100%;
@@ -5195,6 +5329,9 @@ input[type="email"].ng-invalid {
                                 &:first-child {
                                     border-top: none;
                                 }
+                                &.ip-pending-to-add {
+                                    color: #BBBBBB;
+                                }
                             }
                         }
                         .pagination {
@@ -5207,11 +5344,12 @@ input[type="email"].ng-invalid {
                     .flex-item;
                     height: 100%;
                     position: relative;
-                    padding-top: 40px;
+                    padding-top: 34px;
                     >.alert {
                         position: absolute;
                         z-index: 2;
                         width: 100%;
+                        height: 35px;
                         top: 0;
                     }
                     footer {
@@ -5342,6 +5480,19 @@ input[type="email"].ng-invalid {
                         }
                     }
                 }
+
+                .backup-unavailable {
+                  .detail-console(@consoleHeight);
+                  height: 100%;
+                  left: 0px;
+                  padding-left: 10px;
+                  padding-right: 10px;
+                  h1 {
+                    text-align: center;
+                    margin-top: 60px;
+                    font: bold 15px/30px sans-serif;
+                  }
+                }
             }
             .edit-virtual-machine-backup-last {
                 .adpative-grid {
@@ -5431,7 +5582,7 @@ input[type="email"].ng-invalid {
           height: 330px;
           position: relative;
           .script-container-components-json {
-            padding: 10px 20px;
+            padding: 10px 20px 50px;
             .square(100%);
             position: relative;
             padding-top: @highHeaderHeight;
@@ -5456,6 +5607,9 @@ input[type="email"].ng-invalid {
             padding-bottom: 10px;
             padding-top: 10px;
         }
+
+        max-height: 450px;
+        padding-left: 10px;
     }
 }
 
@@ -5514,7 +5668,7 @@ input[type="email"].ng-invalid {
             }
         }
         .span12 >label.checkbox {
-            font-weight: bold;
+            font-size: 12px;
         }
         .form-format {
             color:@grayLight;
@@ -5560,11 +5714,6 @@ input[type="email"].ng-invalid {
             }
         }
     }
-}
-
-
-.configuration-form-container {
-
 }
 
 .events-form-container {
@@ -5733,14 +5882,19 @@ input[type="email"].ng-invalid {
             background-position: 50% 0px;
             background-repeat: no-repeat;
             background-size: 55px 55px;
+
+            display:table-cell;
+            vertical-align:middle;
             &.default-cover {
                 background-image: url(@virtualMachineDefaultIcon);
                 background-position: 50% 7px;
             }
             .default-cover-img,
             img {
-                margin-top: 2px;
-                .square(55px);
+              max-width: 85px;
+              max-height: 60px;
+              width: auto;
+              height: auto;
             }
         }
 
@@ -5760,6 +5914,8 @@ input[type="email"].ng-invalid {
         }
 
         .vm-state {
+            position: absolute;
+            bottom: 16px;
             width: 100%;
 
             .vm-state-text {
@@ -5793,7 +5949,10 @@ input[type="email"].ng-invalid {
             }
         }
         .ribbon-badge ,
+        .machine-status,
         .chef-enabled,
+        .template-unavailable,
+        .template-failed,
         .to-master,
         .slave-machine,
         .user-badge {
@@ -5803,6 +5962,13 @@ input[type="email"].ng-invalid {
             background-color: transparent;
             background-repeat: no-repeat;
             background-position: 50% 50%;
+        }
+
+        .machine-status {
+            top: 0px;
+            left: 0px;
+            background-size:30px 30px;
+            .size(30px, 30px);
         }
 
         .ribbon-badge {
@@ -5819,11 +5985,31 @@ input[type="email"].ng-invalid {
         }
 
         .chef-enabled {
+            bottom: 0px;
+            right: 0px;
+            height: 23px;
+            width: 23px;
+            background-image: url(../../abicloudDefault/img/chef_icon.png);
+            background-position: 0% 0px;
+        }
+
+        .template-unavailable {
+            bottom: 1px;
+            right: 0px;
+            height: 17px;
+            width: 17px;
+            opacity: 0.8;
+            background-image: url(../../abicloudDefault/img/deleted_icon.png);
+            background-position: 0% 0px;
+        }
+
+        .template-failed {
           bottom: 1px;
           right: 0px;
           height: 17px;
-          width: 23px;
-          background-image: url(../../abicloudDefault/img/chef_icon.png);
+          width: 17px;
+          opacity: 0.8;
+          background-image: url(../../abicloudDefault/img/failed_icon.png);
           background-position: 0% 0px;
         }
 
@@ -5969,6 +6155,10 @@ hr.span12 {
             border-bottom: 1px solid #F2F2F2;
             &:last-child {
                 border: none;
+            }
+            &[disabled=disabled] {
+              pointer-events:none;
+              color: #ccc;
             }
             .vm-img {
                 .square(55px);
@@ -6405,7 +6595,7 @@ hr.span12 {
         margin-left: 10px;
         .legend-item-color {
             margin-top: 5px;
-            .size(5px, 30px);
+            .size(5px, 20px);
             float: left;
         }
         .legend-item-label{
@@ -6468,6 +6658,7 @@ hr.span12 {
 .pvmt-state-DONE {color: @green;}
 .pvmt-state-OFF {color: @red;}
 .pvmt-state-UNKNOWN {color: @grayLight;}
+.pvmt-state-DISABLED_FOR_HA {color: @grayLight;}
 .pvmt-state-INPROGRESS {color: @orange;}
 .pvmt-state-FAILED {color: @red;}
 
@@ -6523,20 +6714,72 @@ hr.span12 {
     }
 }
 
-
 .virtual-machine-image {
     background-repeat: no-repeat;
-    width: 60px;
+    width: 99px;
     height: 60px;
     margin: 0 auto;
 
+    display:table-cell;
+    vertical-align:middle;
     &.default-cover {
         background: transparent url(@virtualMachineDefaultIcon) no-repeat 50% 0px;
     }
     .default-cover-img,
     img {
-      width: 100%;
-      height: 100%;
+      max-width: 85px;
+      max-height: 60px;
+      width: auto;
+      height:auto;
+      &[disabled=disabled] {
+        .opacity(.1);
+      }
+    }
+}
+
+.resizable-divider() {
+    &:hover {
+        background-color: rgba(0,0,0,0.1);
+    }
+}
+
+.resizable-divider-horizontal {
+    .resizable-divider();
+    width: 100%;
+    cursor: row-resize;
+    height: @resizableDividerSize;
+    /* TODO: Style when need it */
+}
+
+.resizable-divider-vertical {
+    .resizable-divider();
+    cursor: col-resize;
+    position: relative;
+    float: left;
+    width: @resizableDividerSize;
+    height: 100%;
+
+    i {
+        position: absolute;
+        top: 50%;
+        margin-top: -5px;
+        left: 3px;
+    }
+}
+
+.collapser-horizontal {
+    cursor: pointer;
+    cursor: hand;
+    width: 100%;
+    height: @resizableCollapserSize;
+    text-align: center;
+    &:hover {
+      background-color: rgba(0,0,0,0.1);
+    }
+
+    i {
+        position: absolute;
+        margin-top: -1px;
     }
 }
 
