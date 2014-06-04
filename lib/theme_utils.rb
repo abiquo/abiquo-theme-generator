@@ -22,7 +22,7 @@ module ThemeUtils
 	}
 
 	CONSOLE_THEME_IMAGES = {
-		'main_menu_logo' => {'name' => 'Main Menu logo', 'file' => 'img/abiquo_login.png'},
+		'main_menu_logo' => {'name' => 'Main Menu logo', 'file' => 'img/abiquo_logo.png'},
 		'main_menu_buttons_sprite' => {'name' => 'Main menu buttons sprite', 'file' => 'img/mainmenu-buttons.png'}
 	}
 
