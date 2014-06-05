@@ -23,18 +23,18 @@ AbiquoBranding.controllers :theme_config do
 
   get :create, :map => "/create_theme" do
 
-    if params['type'] == 'enterprise'
+    if params['type'] == 'console'
 
-      @enterprise = true
-      @images = ThemeUtils::ENTERPRISE_IMAGES.sort
-      @colors = ThemeUtils::ENTERPRISE_COLORS.sort
+      @console = true
+      @images = ThemeUtils::CONSOLE_THEME_IMAGES.sort
+      @colors = ThemeUtils::CONSOLE_THEME_COLORS.sort
 
       render 'theme_config/create_theme_form.erb'
 
-    elsif params['type'] == 'base'
-      @base = true
-      @colors = ThemeUtils::BASE_THEME_COLORS.sort
-      @images = ThemeUtils::BASE_THEME_IMAGES.sort
+    elsif params['type'] == 'login'
+      @login = true
+      @colors = ThemeUtils::LOGIN_THEME_COLORS.sort
+      @images = ThemeUtils::LOGIN_THEME_IMAGES.sort
 
       render 'theme_config/create_theme_form.erb'
     end
@@ -44,8 +44,8 @@ AbiquoBranding.controllers :theme_config do
   post :create, :map => "/create_theme" do
     #Create a new theme
     begin
-      theme = ThemeUtils.create_ent_theme params['theme_name'] if params['type'] == 'enterprise'
-      theme = ThemeUtils.create_base_theme params['theme_name'] if params['type'] == 'base'
+      theme = ThemeUtils.create_console_theme params['theme_name'] if params['type'] == 'console'
+      theme = ThemeUtils.create_login_theme params['theme_name'] if params['type'] == 'login'
     rescue Exception => e
       @error = e.message
       return render 'theme_config/error.erb'
@@ -55,13 +55,13 @@ AbiquoBranding.controllers :theme_config do
     custom_images = {}
     params.each do |id, content|
       id_image = id.split('.')[0]
-      custom_images[id] = content[:tempfile].read if (ThemeUtils::ENTERPRISE_IMAGES[id_image] or ThemeUtils::BASE_THEME_IMAGES[id_image])
+      custom_images[id] = content[:tempfile].read if (ThemeUtils::CONSOLE_THEME_IMAGES[id_image] or ThemeUtils::LOGIN_THEME_IMAGES[id_image])
     end
 
     #Only save colors from the list
     custom_colors = {}
     params.each do |id, color|
-      custom_colors[id] = color.delete('#') if (ThemeUtils::ENTERPRISE_COLORS[id] or ThemeUtils::BASE_THEME_COLORS[id])
+      custom_colors[id] = color.delete('#') if (ThemeUtils::CONSOLE_THEME_COLORS[id] or ThemeUtils::LOGIN_THEME_COLORS[id])
     end
 
     #Replace example CSS by custom CSS
@@ -72,8 +72,7 @@ AbiquoBranding.controllers :theme_config do
 
     #Compile
     ThemeUtils.compile theme
-    @file_name = ThemeUtils.pack theme
-
+    @file_name = ThemeUtils.pack theme 
     render 'theme_config/created.erb'
   end
 
